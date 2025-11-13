@@ -1,7 +1,7 @@
 # 🕊️ Church Management System — Frontend
 
-This is the **frontend** of the **Church Management System (ChMS)** built with **React + Vite**.  
-It provides a modern, fast, and responsive interface for managing church members, volunteers, events, finances, and ministries.
+This is the **frontend** of the **Church Management System (ChMS)**, built with **React + Vite**.  
+It provides an intuitive interface for managing members, volunteers, finances, services, departments, events, and other church operations.
 
 ---
 
@@ -17,28 +17,56 @@ It provides a modern, fast, and responsive interface for managing church members
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) |
 | **Icons** | [Lucide React](https://lucide.dev/) |
 | **Form Handling (optional)** | [React Hook Form](https://react-hook-form.com/) |
-| **Linting** | ESLint + Prettier |
 
 ---
 
 ## 📁 Folder Structure
 
+````text
 church-management-frontend/
-├── public/ # Static assets
+├── public/                      # Static assets (images, favicon, etc.)
 ├── src/
-│ ├── assets/ # Images, fonts, icons, etc.
-│ ├── components/ # Shared UI components
-│ ├── features/ # Feature-based modules (Members, Events, etc.)
-│ ├── hooks/ # Custom React hooks
-│ ├── layouts/ # Reusable page layouts (Dashboard, Auth)
-│ ├── pages/ # Page components
-│ ├── routes/ # Route definitions and guards
-│ ├── services/ # API calls, Axios setup
-│ ├── store/ # Zustand stores
-│ ├── utils/ # Helper functions and constants
-│ ├── App.tsx # Root component
-│ └── main.tsx # Vite bootstrap file
-├── .env.example # Environment variables template
+│   ├── assets/                  # Images, fonts, static media
+│   ├── components/              # Reusable UI components (ui/, layout, primitives)
+│   ├── components/ui/           # shadcn/ui-wrapped components (Button, Input, etc.)
+│   ├── features/                # Feature modules (members/, events/, finance/, etc.)
+│   │   ├── members/
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   └── members.service.ts
+│   │   └── events/
+│   ├── hooks/                   # Custom React hooks
+│   ├── layouts/                 # Page layouts (DashboardLayout, AuthLayout)
+│   ├── pages/                   # Route pages (Dashboard.tsx, Members.tsx, Login.tsx)
+│   ├── routes/                  # Route definitions & protected route wrappers
+│   ├── services/                # API clients, axios instances (api.ts)
+│   ├── store/                   # Zustand stores
+│   ├── utils/                   # Helpers, formatters, validators
+│   ├── App.tsx                  # App entry point / route setup
+│   └── main.tsx                 # Vite bootstrap file
+├── .env.example                 # Environment variables sample
 ├── index.html
 ├── package.json
 └── vite.config.ts
+
+## 🚀 Features
+
+- 👥 **Member & Volunteer Management** - Comprehensive member profiles and volunteer tracking
+- 🎉 **Event & Service Scheduling** - Plan and manage church events and services
+- 💰 **Financial Tracking** - Tithes, offerings, and expense management
+- 🏢 **Department Organization** - Ministry and department structure management
+- 📋 **Attendance & Visitors** - Track member attendance and new converts
+- 📦 **Facility & Inventory** - Church resources and equipment management
+- 📈 **Analytics Dashboard** - Reports and insights for church leadership
+- 🔐 **Role-Based Access** - Secure authentication and authorization
+
+### Prerequisites
+- Node.js (version 24 or higher)
+- npm or yarn
+
+### Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/church-management-frontend.git
+   cd church-management-frontend
