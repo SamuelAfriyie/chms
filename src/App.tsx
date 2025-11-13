@@ -1,15 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router"
-import { routes, type RouteType } from "./config/router/route"
+import { routes } from "./config/router/route"
+
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+
+const router = createBrowserRouter(routes);
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {
-          routes.map((route: RouteType) => <Route {...route} />)
-        }
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   )
 }
 

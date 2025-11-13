@@ -2,20 +2,20 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
-  Frame,
+  Church,
   GalleryVerticalEnd,
-  Map,
+  Gem,
+  LayoutDashboard,
   PieChart,
-  Settings2,
+  Settings,
+  Shield,
   SquareTerminal,
+  Wallet,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -25,113 +25,122 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { NavFavourite } from "./nav-favorites"
+import { NavProjects } from "./nav-projects"
 
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "ChMS",
+    email: "info@chms.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
+      name: "ChMS Inc",
+      logo: Church,
       plan: "Enterprise",
     },
+  ],
+  favoutites: [
     {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
+      name: "Overview",
+      url: "/dashboard",
+      icon: LayoutDashboard,
     },
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Member Management",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
+      isActive: false,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Member",
+          url: "/dashboard/member-management/member",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Visitor",
+          url: "/dashboard/member-management/visitor",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Evangelism - New Convert",
+          url: "/dashboard/member-management/new-convert",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Group Management",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Department",
+          url: "/dashboard/group-management/department",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Asset Management",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Facility",
           url: "#",
         },
         {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Inventory",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Accounting & Finance",
       url: "#",
-      icon: Settings2,
+      icon: Gem,
       items: [
         {
-          title: "General",
+          title: "Income",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Expenses",
           url: "#",
         },
         {
-          title: "Billing",
+          title: "Balance sheet",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Event & Service Mgmt",
+      url: "#",
+      icon: Church,
+      items: [
+        {
+          title: "Service",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Event",
+          url: "#",
+        },
+        {
+          title: "Order of service",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Contribution Management",
+      url: "#",
+      icon: Wallet,
+      items: [
+        {
+          title: "Tithes Records",
           url: "#",
         },
       ],
@@ -139,19 +148,19 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "User Account",
       url: "#",
-      icon: Frame,
+      icon: Shield,
     },
     {
-      name: "Sales & Marketing",
+      name: "Generate report",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Settings",
       url: "#",
-      icon: Map,
+      icon: Settings,
     },
   ],
 }
@@ -163,6 +172,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
+        <NavFavourite favourites={data.favoutites} />
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>

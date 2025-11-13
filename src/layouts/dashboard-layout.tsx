@@ -2,13 +2,10 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@radix-ui/react-separator";
-import type { ReactElement } from "react";
+import { Outlet } from "react-router";
 
-interface DashboardLayoutProps {
-    children: ReactElement;
-}
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+const DashboardLayout = () => {
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -36,7 +33,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </div>
                 </header>
                 {/* main content goes here */}
-                {children}
+                <Outlet />
             </SidebarInset>
         </SidebarProvider>
     )
