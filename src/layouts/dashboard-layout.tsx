@@ -2,18 +2,15 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@radix-ui/react-separator";
-import type { ReactElement } from "react";
+import { Outlet } from "react-router";
 
-interface DashboardLayoutProps {
-    children: ReactElement;
-}
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+const DashboardLayout = () => {
     return (
         <SidebarProvider>
             <AppSidebar />
-            <SidebarInset>
-                <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+            <SidebarInset className="w-full overflow-hidden">
+                <header className="flex h-14 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 border-b">
                     <div className="flex items-center gap-2 px-4">
                         <SidebarTrigger className="-ml-1" />
                         <Separator
@@ -24,7 +21,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                             <BreadcrumbList>
                                 <BreadcrumbItem className="hidden md:block">
                                     <BreadcrumbLink href="#">
-                                        Building Your Application
+                                        ChMS
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator className="hidden md:block" />
@@ -36,7 +33,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </div>
                 </header>
                 {/* main content goes here */}
-                {children}
+                {/* <main className="p-1 size-full bg-muted"> */}
+                <Outlet />
+                {/* </main> */}
             </SidebarInset>
         </SidebarProvider>
     )

@@ -15,6 +15,10 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import { Link } from "react-router-dom";
+import { useNavStore } from "@/store/nav-store";
+import { cn } from "@/lib/utils";
+import { useFavStore } from "@/store/favourite-store";
 
 export function NavMain({
   items,
@@ -26,19 +30,24 @@ export function NavMain({
     isActive?: boolean
     items?: {
       title: string
-      url: string
+      url: string,
+      icon?: LucideIcon
     }[]
   }[]
 }) {
+
+  const { selected, toggle } = useNavStore();
+  const { addTo } = useFavStore();
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>Modules</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
             key={item.title}
             asChild
-            defaultOpen={item.isActive}
+            defaultOpen={selected.includes(item.url)}
             className="group/collapsible"
           >
             <SidebarMenuItem>
@@ -51,15 +60,22 @@ export function NavMain({
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                  {item.items?.map((subItem) => {
+                    // const Icon = Icons[subItem.icon as keyof typeof Icons] as LucideIcon;
+
+                    return (<SidebarMenuSubItem key={subItem.title}>
+                      <SidebarMenuSubButton asChild className={cn(selected == subItem.url && "bg-red-100 hover:bg-red-200")} onClick={() => {
+                        toggle(subItem.url);
+                        addTo({ name: subItem.title, url: subItem.url, icon: subItem.icon?.displayName });
+                      }}>
+                        <Link to={subItem.url}>
+                          {subItem.icon && <subItem.icon />}
+                          {/* {typeof subItem.icon === "string" && <Icon />} */}
                           <span>{subItem.title}</span>
-                        </a>
+                        </Link>
                       </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
+                    </SidebarMenuSubItem>)
+                  })}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>

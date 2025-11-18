@@ -68,5 +68,22 @@ church-management-frontend/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/church-management-frontend.git
+   git clone https://github.com/Samuel-Afriyie/church-management-frontend.git
    cd church-management-frontend
+
+# 🧭 Summary by Module (Simplified)
+
+Here’s how your features group up:
+
+| Module | Features | Icon |
+|--------|----------|------|
+| **1. Member Management** | - Register church members<br>- Evangelism - new convert (integration into membership) | 👥 |
+| **2. Event & Service Management** | - Register church service<br>- Church event register<br>- Order of service | 📅 |
+| **3. Ministry & Group Management** | - Church department | 🏛️ |
+| **4. Facility & Asset Management** | - Facility management<br>- Church inventory | 🏗️ |
+| **5. Accounting & Finance** | - Record income<br>- Record expenses<br>- Balance sheet | 💰 |
+| **6. Contribution Management** | - Tithes records | 💵 |
+| **7. Visitor & Evangelism** | - Visitors form<br>- Evangelism - new convert | 🌱 |
+| **8. User & Role Management** | - Register system user | 🔑 |
+| **9. Reporting & Analytics** | - Generate report | 📊 |
+| **10. System Administration** | - System settings | ⚙️ |
