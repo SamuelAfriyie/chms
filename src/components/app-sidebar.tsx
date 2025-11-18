@@ -2,16 +2,18 @@
 
 import * as React from "react"
 import {
+  AlarmClockMinus,
   BookOpen,
   Bot,
   Church,
-  GalleryVerticalEnd,
   Gem,
+  House,
   LayoutDashboard,
   PieChart,
   Settings,
   Shield,
   SquareTerminal,
+  Users,
   Wallet,
 } from "lucide-react"
 
@@ -27,6 +29,7 @@ import {
 } from "@/components/ui/sidebar"
 import { NavFavourite } from "./nav-favorites"
 import { NavProjects } from "./nav-projects"
+import { useFavStore } from "@/store/favourite-store"
 
 // This is sample data.
 const data = {
@@ -59,25 +62,34 @@ const data = {
         {
           title: "Member",
           url: "/dashboard/member-management/member",
+          icon: Users,
         },
         {
           title: "Visitor",
           url: "/dashboard/member-management/visitor",
+          icon: AlarmClockMinus,
         },
         {
           title: "Evangelism - New Convert",
           url: "/dashboard/member-management/new-convert",
+          icon: House,
         },
       ],
     },
     {
-      title: "Group Management",
+      title: "Families & Groups",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Department",
-          url: "/dashboard/group-management/department",
+          title: "Group",
+          url: "/dashboard/group-management/group",
+          icon: LayoutDashboard,
+        },
+        {
+          title: "Family",
+          url: "/dashboard/group-management/family",
+          icon: LayoutDashboard,
         },
       ],
     },
@@ -88,11 +100,13 @@ const data = {
       items: [
         {
           title: "Facility",
-          url: "#",
+          url: "/dashboard/asset-management/facility",
+          icon: LayoutDashboard,
         },
         {
           title: "Inventory",
-          url: "#",
+          url: "/dashboard/asset-management/inventory",
+          icon: LayoutDashboard,
         },
       ],
     },
@@ -103,15 +117,18 @@ const data = {
       items: [
         {
           title: "Income",
-          url: "#",
+          url: "/dashboard/accounting-finance/income",
+          icon: LayoutDashboard,
         },
         {
           title: "Expenses",
-          url: "#",
+          url: "/dashboard/accounting-finance/expenses",
+          icon: LayoutDashboard,
         },
         {
           title: "Balance sheet",
-          url: "#",
+          url: "/dashboard/accounting-finance/balance-sheet",
+          icon: LayoutDashboard,
         },
       ],
     },
@@ -122,15 +139,18 @@ const data = {
       items: [
         {
           title: "Service",
-          url: "#",
+          url: "/dashboard/event-service/management/service",
+          icon: LayoutDashboard,
         },
         {
           title: "Event",
-          url: "#",
+          url: "/dashboard/event-service/management/event",
+          icon: LayoutDashboard,
         },
         {
           title: "Order of service",
-          url: "#",
+          url: "/dashboard/event-service/management/order-of-service",
+          icon: LayoutDashboard,
         },
       ],
     },
@@ -142,6 +162,7 @@ const data = {
         {
           title: "Tithes Records",
           url: "#",
+          icon: LayoutDashboard,
         },
       ],
     },
@@ -166,13 +187,15 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { items } = useFavStore();
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavFavourite favourites={data.favoutites} />
+        <NavFavourite favourites={[...data.favoutites, ...items as any]} />
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
