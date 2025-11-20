@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button"
 import {
     Sheet,
-    SheetClose,
     SheetContent,
     SheetDescription,
     SheetFooter,
@@ -23,7 +21,7 @@ export function SideSheet({ open, title, description, children, footer, onOpenCh
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
             <SheetContent>
-                <SheetHeader>
+                <SheetHeader >
                     <SheetTitle>{title}</SheetTitle>
                     <SheetDescription>
                         {description}

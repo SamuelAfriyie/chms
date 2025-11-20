@@ -36,7 +36,7 @@ export function NavFavourite({
 
                     return (
                         <SidebarMenuItem key={item.name}>
-                            <SidebarMenuButton asChild className={cn(selected == item.url && "bg-red-100 hover:bg-red-200")} onClick={() => toggle(item.url)}>
+                            <SidebarMenuButton asChild className={cn(selected === item.url && "bg-red-100 hover:bg-red-200")} onClick={() => toggle(item.url)}>
                                 <Link to={item.url} >
                                     {typeof item.icon === "string" ? <Icon /> : <item.icon />}
                                     <button>{item.name}</button>
