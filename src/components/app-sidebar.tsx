@@ -139,17 +139,17 @@ const data = {
       items: [
         {
           title: "Service",
-          url: "/dashboard/event-service/management/service",
+          url: "/dashboard/event-service/service",
           icon: LayoutDashboard,
         },
         {
           title: "Event",
-          url: "/dashboard/event-service/management/event",
+          url: "/dashboard/event-service/event",
           icon: LayoutDashboard,
         },
         {
           title: "Order of service",
-          url: "/dashboard/event-service/management/order-of-service",
+          url: "/dashboard/event-service/order-of-service",
           icon: LayoutDashboard,
         },
       ],

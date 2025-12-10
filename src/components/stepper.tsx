@@ -20,15 +20,15 @@ export const StepTracker = ({ step, items, className }: StepTrackerType) => {
                             initial={{ width: 0 }}
                             animate={{ width: step > num ? "100%" : "0%" }}
                             transition={{ duration: 0.4 }}
-                            className="absolute top-[15px] left-[60%] h-1 bg-blue-500 rounded-full"
+                            className="absolute top-[15px] left-[60%] h-1 bg-primary rounded-full"
                         />
                     )}
 
                     <div
                         className={`flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300 z-10 text-xs ${step === num
-                            ? "border-blue-600 bg-blue-600 text-white"
+                            ? "border-primary bg-primary text-white"
                             : step > num
-                                ? "border-green-600 bg-green-600 text-white"
+                                ? "border-black bg-muted text-white"
                                 : "border-gray-300 bg-white text-gray-500"
                             }`}
                     >
