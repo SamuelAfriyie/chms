@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import MemberForm from "./components/member_form";
+import MemberToolbar from "./components/member_toolbar";
 
 export default function Member() {
     const [open, setOpen] = useState<boolean>(false);
@@ -23,8 +24,9 @@ export default function Member() {
 
     return (
         <main className="size-full overflow-hidden px-1">
-            <header className="w-full h-fit p-2">
-                <div className="flex justify-end space-x-2">
+            <header className="w-full h-fit py-1">
+                <div className="flex justify-between space-x-2 items-center">
+                    <MemberToolbar />
                     <Button size={"sm"} onClick={() => setOpen(true)}><Plus /> Add Member</Button>
                 </div>
             </header>

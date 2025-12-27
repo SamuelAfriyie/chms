@@ -27,8 +27,8 @@ const groups = [
         label: "Administration/Operations",
     },
     {
-        value: "Worship/Music-Ministry ",
-        label: "Worship/Music-Ministry ",
+        value: "Worship/Music-Ministry",
+        label: "Worship/Music-Ministry",
     },
     {
         value: "Children's-Ministry",
@@ -152,11 +152,11 @@ const GroupItem = ({ name, onUpdate }: GroupItemProps) => {
 
     return (
         <main className="spacy-y-2">
-            <section className="flex border rounded-md bg-muted px-4 py-2 space-x-2 items-center">
+            <section className="group flex border rounded-md bg-muted px-4 py-2 space-x-2 items-center hover:bg-white">
                 <div className="flex-1">
                     <p className="text-xs text-ellipsis font-semibold">{name}</p>
                 </div>
-                <MinusCircleIcon height={18} width={18} color="red" onClick={() => handleRemoveItem(name)} />
+                <MinusCircleIcon height={18} width={18} color="red" onClick={() => handleRemoveItem(name)} className="invisible group-hover:visible transition duration-150" />
             </section>
         </main>
     )
