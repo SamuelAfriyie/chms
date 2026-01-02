@@ -11,8 +11,8 @@ function App() {
   const rxQueryClient = getContext().queryClient;
   return (
     <Provider queryClient={rxQueryClient}>
-      <Toaster />
-      <RouterProvider router={router} />
+      <Toaster /> 
+        <RouterProvider router={router} /> 
     </Provider>
   )
 }

@@ -1,9 +1,9 @@
+import { ProtectedRoute } from "@/features/auth/middleware";
 import Signin from "@/features/auth/sigin";
-import Dashboard from "@/features/dashboard/dashboard";
 import Member from "@/features/dashboard/member_mgmt/member/member";
 import NewConvert from "@/features/dashboard/member_mgmt/new_convert/new-convert";
 import Visitor from "@/features/dashboard/member_mgmt/visitor/visitor";
-import DashboardLayout from "@/layouts/dashboard-layout";
+import Overview from "@/features/dashboard/overview/overview";
 
 export type RouteType = {
     path: string,
@@ -19,9 +19,10 @@ export const routes: RouteType[] | any[] = [
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: <ProtectedRoute />,
         children: [
-            { index: true, element: <Dashboard /> },
+            { index: true, element: <Overview /> },
+            // { index: true, element: <Dashboard /> },
             // member management route
             {
                 path: "member-management",

@@ -1,12 +1,9 @@
-"use client"
-
 import * as React from "react"
 
 import { Calendar } from "@/components/ui/calendar"
 import type { DateRange } from "react-day-picker"
 import { EndDate, StartDate } from "@/types/generics"
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover"
-import { Card } from "./ui/card"
 
 interface RangeSelectorProps {
   startDate?: Date,
@@ -24,7 +21,7 @@ export default function RangeSelector({ startDate, endDate }: RangeSelectorProps
   return (
     <Popover open={open}>
       <PopoverTrigger>
-        <div className="w-[24px] p-2" onClick={() => setOpen(!open)}>
+        <div className="w-6 p-2" onClick={() => setOpen(!open)}>
           <p>Date</p>
         </div>
       </PopoverTrigger>
@@ -43,7 +40,3 @@ export default function RangeSelector({ startDate, endDate }: RangeSelectorProps
     </Popover>
   )
 }
-function dayjs(): Date | undefined {
-  throw new Error("Function not implemented.")
-}
-

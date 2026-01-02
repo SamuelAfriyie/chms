@@ -29,10 +29,10 @@ export default function SignInForm() {
             formData,
             {
                 onSuccess: (res) => {
-                    console.log("Login successful", res);
-                    if (res.data?.access_token) {
-                        localStorage.setItem("token", res.data.access_token);
-                        document.cookie = `token=${res.data.access_token}; path=/; max-age=86400; SameSite=Strict`;
+                    console.log("Login successfulX", res);
+                    if (res.token) {
+                        localStorage.setItem("token", res.token);
+                        document.cookie = `token=${res.token}; path=/; max-age=86400; SameSite=Strict`;
                     }
                     toast.success("Login successful");
                     navigate("/dashboard", { replace: true });

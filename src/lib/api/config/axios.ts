@@ -1,5 +1,5 @@
 import axios, { isAxiosError } from "axios";
-import type { BaseResponse, ServiceDefinition } from "./api-types";
+import type { ServiceDefinition } from "./api-types";
 
 const index = axios.create({
   baseURL: import.meta.env.VITE_PUBLIC_BASE_URL || "",
@@ -23,7 +23,7 @@ export const configFn = async <TData, Error = never>(
 ) => {
   try {
     const response = await axiosApi(config);
-    return response.data as BaseResponse<TData>;
+    return response.data as TData;
   } catch (error) {
     if (isAxiosError(error)) {
       throw error.response?.data as Error;
