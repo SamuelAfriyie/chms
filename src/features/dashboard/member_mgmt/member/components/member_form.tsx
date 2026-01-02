@@ -13,6 +13,7 @@ import { StepTracker, StepWrapper } from "@/components/stepper";
 import { Separator } from "@/components/ui/separator";
 import FormSelectField from "@/components/form-select-field";
 import FormDatePicker from "@/components/form-date-picker";
+import GroupAssignment from "./group_assignment";
 
 interface MemberFormType {
     open: boolean,
@@ -37,7 +38,7 @@ const init: z.infer<typeof MemberSchema> = {
 export default function MemberForm({ open, setOpen }: MemberFormType) {
     const [step, setStep] = useState(1);
 
-    const next = () => setStep((prev) => Math.min(prev + 1, 5));
+    const next = () => setStep((prev) => Math.min(prev + 1, 4));
     const back = () => setStep((prev) => Math.max(prev - 1, 1));
 
     const form = useForm<z.infer<typeof MemberSchema>>({
@@ -57,7 +58,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                     </div>
 
                     <div className="w-full">
-                        {step < 5 ? (
+                        {step < 4 ? (
                             <Button onClick={next} className="w-full">
                                 <Forward />
                                 Next
@@ -75,16 +76,16 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
             } >
             {/* form section */}
             <FormProvider {...form}>
-                <form className="w-full h-screen bg-muted/50 border-y" onSubmit={form.handleSubmit(() => { })}>
+                <form className="w-full h-screen bg-muted/50 border-y overflow-y-auto" onSubmit={form.handleSubmit(() => { })}>
                     {/* Step Tracker */}
-                    <StepTracker step={step} items={[1, 2, 3, 4, 5]} className="my-4" />
+                    <StepTracker step={step} items={[1, 2, 3, 4]} className="my-4" />
                     <Separator />
                     {step === 1 && (
                         <StepWrapper step={step}>
                             <aside className="w-full grid md:grid-cols-1 gap-3 p-4">
                                 <h2 className="text-[16px] font-medium text-gray-700 mb-1">Step 1: Personal Infomation</h2>
 
-                                <div className="w-full md:pl-1">
+                                <div className="w-full md:pl-[27px]">
                                     <FormField
                                         control={form.control}
                                         name="firstName"
@@ -93,7 +94,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                         )}
                                     />
                                 </div>
-                                <div className="w-full md:pl-1">
+                                <div className="w-full md:pl-7">
                                     <FormField
                                         control={form.control}
                                         name="lastName"
@@ -102,7 +103,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                         )}
                                     />
                                 </div>
-                                <div className="w-full md:pl-[22px] flex items-center">
+                                <div className="w-full md:pl-[47px] flex items-center">
                                     <aside className="w-full flex-1">
                                         <FormField
                                             control={form.control}
@@ -116,16 +117,16 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                         />
                                     </aside>
                                 </div>
-                                <div className="w-full md:pl-[53px]">
+                                <div className="w-full md:pl-[63px]">
                                     <FormField
                                         control={form.control}
                                         name="dob"
                                         render={({ field }) => (
-                                            <FormDatePicker label="Date:" field={field} />
+                                            <FormDatePicker label="DOB:" field={field} />
                                         )}
                                     />
                                 </div>
-                                <div className="w-full flex items-center">
+                                <div className="w-full md:pl-[9px] flex items-center">
                                     <aside className="w-full flex-1">
                                         <FormField
                                             control={form.control}
@@ -139,13 +140,23 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                         />
                                     </aside>
                                 </div>
-                                <div className="w-full flex items-center">
+
+                                <div className="w-full md:pl-5 pr-[42px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="dob"
+                                        render={({ field }) => (
+                                            <FormDatePicker label="Memb. Date:" field={field} />
+                                        )}
+                                    />
+                                </div>
+                                <div className="w-full md:pl-[9px]  flex items-center">
                                     <aside className="w-full flex-1">
                                         <FormField
                                             control={form.control}
                                             name="membershipStatus"
                                             render={({ field }) => (
-                                                <FormSelectField label="Membership Status:" field={field}
+                                                <FormSelectField label="Memb. Status:" field={field}
                                                     valueExpr="value" keyExpr="label"
                                                     options={[]}
                                                 />
@@ -157,9 +168,9 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                     <aside className="w-full flex-1">
                                         <FormField
                                             control={form.control}
-                                            name="membershipStatus"
+                                            name="baptismStatus"
                                             render={({ field }) => (
-                                                <FormSelectField label="Membership Status:" field={field}
+                                                <FormSelectField label="Baptism Status:" field={field}
                                                     valueExpr="value" keyExpr="label"
                                                     options={[]}
                                                 />
@@ -173,10 +184,10 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
 
                     {step === 2 && (
                         <StepWrapper step={step}>
-                            <div className="space-y-4">
-                                <h2 className="text-lg font-medium text-gray-700">Step 2: Contact Information</h2>
+                            <div className="w-full grid md:grid-cols-1 gap-3 p-4 overflow-y-auto">
+                                <h2 className="text-[16px] font-medium text-gray-700 mb-1">Step 2: Contact Information</h2>
 
-                                <div className="w-full md:pl-[34px]">
+                                <div className="w-full md:pl-[18px]">
                                     <FormField
                                         control={form.control}
                                         name="email"
@@ -185,7 +196,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                         )}
                                     />
                                 </div>
-                                <div className="w-full md:pl-[29px]">
+                                <div className="w-full md:pl-[13px]">
                                     <FormField
                                         control={form.control}
                                         name="phone"
@@ -195,7 +206,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                     />
                                 </div>
 
-                                <div className="w-full md:pl-4">
+                                <div className="w-full">
                                     <FormField
                                         control={form.control}
                                         name="address"
@@ -210,29 +221,62 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
 
                     {step === 3 && (
                         <StepWrapper step={step}>
-                            <div className="space-y-4">
-                                <h2 className="text-lg font-medium text-gray-700">Step 3: Confirmation</h2>
-                                <p className="text-gray-600">Review your details and submit.</p>
+                            <div className="w-full grid md:grid-cols-1 gap-3 p-4 overflow-y-auto">
+                                <h2 className="text-[16px] font-medium text-gray-700 mb-1">Step 3: Family / Household Information</h2>
+
+                                <div className="w-full flex items-center">
+                                    <aside className="w-full flex-1">
+                                        <FormField
+                                            control={form.control}
+                                            name="baptismStatus"
+                                            render={({ field }) => (
+                                                <FormSelectField label="Family(Household):" field={field}
+                                                    valueExpr="value" keyExpr="label"
+                                                    options={[]}
+                                                />
+                                            )}
+                                        />
+                                    </aside>
+                                </div>
+                                <div className="w-full flex items-center">
+                                    <aside className="w-full flex-1 md:pl-[37px]">
+                                        <FormField
+                                            control={form.control}
+                                            name="baptismStatus"
+                                            render={({ field }) => (
+                                                <FormSelectField label="Relationship:" field={field}
+                                                    valueExpr="value" keyExpr="label"
+                                                    options={[]}
+                                                />
+                                            )}
+                                        />
+                                    </aside>
+                                </div>
+                                <div className="w-full flex items-center">
+                                    <aside className="w-full flex-1 md:pl-[15px]">
+                                        <FormField
+                                            control={form.control}
+                                            name="baptismStatus"
+                                            render={({ field }) => (
+                                                <FormSelectField label="Primary Contact:" field={field}
+                                                    valueExpr="value" keyExpr="label"
+                                                    options={[{ "label": "Yes", "value": "yes" }, { "label": "No", "value": "no" }]}
+                                                />
+                                            )}
+                                        />
+                                    </aside>
+                                </div>
                             </div>
                         </StepWrapper>
                     )}
                     {step === 4 && (
                         <StepWrapper step={step}>
-                            <div className="space-y-4">
-                                <h2 className="text-lg font-medium text-gray-700">Step 3: Confirmation</h2>
-                                <p className="text-gray-600">Review your details and submit.</p>
+                            <div className="w-full grid md:grid-cols-1 gap-3 p-4 overflow-y-auto">
+                                <h2 className="text-[16px] font-medium text-gray-700 mb-1">Step 4: Groups <span className="text-sm">[ Department | Ministry | Service ]</span></h2>
+                                <GroupAssignment form={form} />
                             </div>
                         </StepWrapper>
                     )}
-                    {step === 5 && (
-                        <StepWrapper step={step}>
-                            <div className="space-y-4">
-                                <h2 className="text-lg font-medium text-gray-700">Step 3: Confirmation</h2>
-                                <p className="text-gray-600">Review your details and submit.</p>
-                            </div>
-                        </StepWrapper>
-                    )
-                    }
                 </form >
             </FormProvider >
         </SideSheet >

@@ -25,7 +25,7 @@ export default function FormDatePicker({ field, label, placeholder = "Pick a dat
                         <Button
                             variant={"outline"}
                             className={cn(
-                                "md:w-[calc(100%-40px)] pl-3 text-left font-normal h-7 rounded-sm",
+                                "md:w-[calc(100%-40px)] pl-3 text-left font-normal h-8 rounded-sm bg-transparent",
                                 !field.value && "text-muted-foreground", className
                             )}
                         >
