@@ -16,6 +16,8 @@ export type Visitor = {
     address: string,
     status: "Active" | "Inactive",
     maritalStatus: string,
+    createdAt: string,
+    updatedAt: string
 }
 
 export const vistorColumns: ColumnDef<Visitor>[] = [
@@ -115,6 +117,16 @@ export const vistorColumns: ColumnDef<Visitor>[] = [
         header: "Marital Status",
         accessorKey: "maritalStatus",
         cell: ({ row }) => <div className="lowercase">{row.getValue("maritalStatus")}</div>,
+    },
+    {
+        header: "Created At",
+        accessorKey: "createdAt",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("createdAt")}</div>,
+    },
+    {
+        header: "Updated At",
+        accessorKey: "updatedAt",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("updatedAt")}</div>,
     },
     {
         header: "Address",

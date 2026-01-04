@@ -11,6 +11,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 1,
@@ -22,6 +24,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 2,
@@ -33,6 +37,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 4,
@@ -44,6 +50,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 5,
@@ -55,6 +63,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 6,
@@ -66,6 +76,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 7,
@@ -77,6 +89,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 8,
@@ -88,6 +102,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 9,
@@ -99,6 +115,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 10,
@@ -110,6 +128,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 11,
@@ -121,6 +141,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 12,
@@ -132,6 +154,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 13,
@@ -143,6 +167,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 14,
@@ -154,6 +180,8 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
     {
         "id": 15,
@@ -165,5 +193,7 @@ export const newConvertSampleData: Convert[] = [
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
+        "createdAt": '2026-01-12',
+        "updatedAt": "2026-02-12"
     },
 ]

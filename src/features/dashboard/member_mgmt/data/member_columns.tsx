@@ -17,6 +17,8 @@ export type Member = {
     status: "Active" | "Inactive",
     maritalStatus: string,
     baptismStatus: string,
+    createdAt: string,
+    updatedAt: string
 }
 
 export const memberColumns: ColumnDef<Member>[] = [
@@ -121,6 +123,16 @@ export const memberColumns: ColumnDef<Member>[] = [
         header: "Baptism Status",
         accessorKey: "baptismStatus",
         cell: ({ row }) => <div className="lowercase">{row.getValue("baptismStatus")}</div>,
+    },
+    {
+        header: "Created At",
+        accessorKey: "createdAt",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("createdAt")}</div>,
+    },
+    {
+        header: "Updated At",
+        accessorKey: "updatedAt",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("updatedAt")}</div>,
     },
     {
         header: "Address",

@@ -1,213 +1,210 @@
-import type { Member } from "./member_columns";
+import type { Family } from "./family_columns";
 
-export const memberSampleData: Member[] = [
+export const familySampleData: Family[] = [
     {
         "id": 0,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 1,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 2,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 4,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 5,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 6,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 7,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 8,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 9,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 10,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 11,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 12,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 13,
-        "membershipId": "0234", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 14,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },
     {
         "id": 15,
-        "membershipId": "0012", //e.g SUP001
-        "fName": "Samuel Afriyie",
-        "lName": "Kumodzi",
+
+        "familyName": "Milicent Family",
         "phone": "0240000001",
         "email": "example@gmail.com",
         "address": "Accra, Ghana",
         "status": "Inactive",
         "maritalStatus": "Single",
-        "baptismStatus": "Done",
+        "size": 9,
+
         "createdAt": '2026-01-12',
         "updatedAt": "2026-02-12"
     },

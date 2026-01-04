@@ -3,17 +3,20 @@
 import * as React from "react"
 import {
   AlarmClockMinus,
-  BookOpen,
   Bot,
   Church,
-  Gem,
+  // Gem,
+  Group,
   House,
   LayoutDashboard,
+  MonitorCheck,
   PieChart,
+  ReceiptCent,
   Settings,
   Shield,
   SquareTerminal,
   Users,
+  Users2,
   Wallet,
 } from "lucide-react"
 
@@ -54,6 +57,23 @@ const data = {
   ],
   navMain: [
     {
+      title: "Contribution Mgmt",
+      url: "#",
+      icon: Wallet,
+      items: [
+        {
+          title: "Tithes Records",
+          url: "/dashboard/contribution-management/tithes",
+          icon: MonitorCheck,
+        },
+        {
+          title: "Offering Records",
+          url: "/dashboard/contribution-management/offerings",
+          icon: ReceiptCent,
+        },
+      ],
+    },
+    {
       title: "Member Management",
       url: "#",
       icon: SquareTerminal,
@@ -84,88 +104,76 @@ const data = {
         {
           title: "Group",
           url: "/dashboard/group-management/group",
-          icon: LayoutDashboard,
+          icon: Group,
         },
         {
           title: "Family",
           url: "/dashboard/group-management/family",
-          icon: LayoutDashboard,
+          icon: Users2,
         },
       ],
     },
-    {
-      title: "Asset Management",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Facility",
-          url: "/dashboard/asset-management/facility",
-          icon: LayoutDashboard,
-        },
-        {
-          title: "Inventory",
-          url: "/dashboard/asset-management/inventory",
-          icon: LayoutDashboard,
-        },
-      ],
-    },
-    {
-      title: "Accounting & Finance",
-      url: "#",
-      icon: Gem,
-      items: [
-        {
-          title: "Income",
-          url: "/dashboard/accounting-finance/income",
-          icon: LayoutDashboard,
-        },
-        {
-          title: "Expenses",
-          url: "/dashboard/accounting-finance/expenses",
-          icon: LayoutDashboard,
-        },
-        {
-          title: "Balance sheet",
-          url: "/dashboard/accounting-finance/balance-sheet",
-          icon: LayoutDashboard,
-        },
-      ],
-    },
-    {
-      title: "Event & Service Mgmt",
-      url: "#",
-      icon: Church,
-      items: [
-        {
-          title: "Service",
-          url: "/dashboard/event-service/service",
-          icon: LayoutDashboard,
-        },
-        {
-          title: "Event",
-          url: "/dashboard/event-service/event",
-          icon: LayoutDashboard,
-        },
-        {
-          title: "Order of service",
-          url: "/dashboard/event-service/order-of-service",
-          icon: LayoutDashboard,
-        },
-      ],
-    },
-    {
-      title: "Contribution Management",
-      url: "#",
-      icon: Wallet,
-      items: [
-        {
-          title: "Tithes Records",
-          url: "#",
-          icon: LayoutDashboard,
-        },
-      ],
-    },
+    // {
+    //   title: "Asset Management",
+    //   url: "#",
+    //   icon: BookOpen,
+    //   items: [
+    //     {
+    //       title: "Facility",
+    //       url: "/dashboard/asset-management/facility",
+    //       icon: LayoutDashboard,
+    //     },
+    //     {
+    //       title: "Inventory",
+    //       url: "/dashboard/asset-management/inventory",
+    //       icon: LayoutDashboard,
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Accounting & Finance",
+    //   url: "#",
+    //   icon: Gem,
+    //   items: [
+    //     {
+    //       title: "Income",
+    //       url: "/dashboard/accounting-finance/income",
+    //       icon: LayoutDashboard,
+    //     },
+    //     {
+    //       title: "Expenses",
+    //       url: "/dashboard/accounting-finance/expenses",
+    //       icon: LayoutDashboard,
+    //     },
+    //     {
+    //       title: "Balance sheet",
+    //       url: "/dashboard/accounting-finance/balance-sheet",
+    //       icon: LayoutDashboard,
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Event & Service Mgmt",
+    //   url: "#",
+    //   icon: Church,
+    //   items: [
+    //     {
+    //       title: "Service",
+    //       url: "/dashboard/event-service/service",
+    //       icon: LayoutDashboard,
+    //     },
+    //     {
+    //       title: "Event",
+    //       url: "/dashboard/event-service/event",
+    //       icon: LayoutDashboard,
+    //     },
+    //     {
+    //       title: "Order of service",
+    //       url: "/dashboard/event-service/order-of-service",
+    //       icon: LayoutDashboard,
+    //     },
+    //   ],
+    // },
   ],
   projects: [
     {
