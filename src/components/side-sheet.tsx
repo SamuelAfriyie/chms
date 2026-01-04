@@ -20,7 +20,7 @@ interface SheetProps {
 export function SideSheet({ open, title, description, children, footer, onOpenChange }: SheetProps) {
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
-            <SheetContent>
+            <SheetContent className="lg:max-w-md">
                 <SheetHeader >
                     <SheetTitle>{title}</SheetTitle>
                     <SheetDescription>

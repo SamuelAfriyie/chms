@@ -6,21 +6,20 @@ import type { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Copy, Edit, MoreHorizontal } from "lucide-react"
 
 
-export type Convert = {
+export type Family = {
     id: number,
-    convertId: string, //e.g SUP001
-    fName: string,
-    lName: string,
+    familyName: string,
     phone: string,
     email: string,
     address: string,
     status: "Active" | "Inactive",
     maritalStatus: string,
+    size: number,
     createdAt: string,
     updatedAt: string
 }
 
-export const newConvertColumns: ColumnDef<Convert>[] = [
+export const familyColumns: ColumnDef<Family>[] = [
     {
         id: "select",
         enablePinning: true,
@@ -48,35 +47,12 @@ export const newConvertColumns: ColumnDef<Convert>[] = [
         size: 40
     },
     {
-        accessorKey: "convertId",
+        accessorKey: "familyName",
+        header: "Family Name",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("convertId")}</div>
+            <div className="capitalize">{row.getValue("familyName")}</div>
         ),
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Convert ID
-                    <ArrowUpDown />
-                </Button>
-            )
-        },
-    },
-    {
-        accessorKey: "fName",
-        header: "First Name",
-        cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("fName")}</div>
-        ),
-    },
-    {
-        accessorKey: "lName",
-        header: "Last Name",
-        cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("lName")}</div>
-        ),
+        size: 300
     },
     {
         accessorKey: "email",
@@ -114,9 +90,14 @@ export const newConvertColumns: ColumnDef<Convert>[] = [
         cell: ({ row }) => <div className="lowercase">{row.getValue("phone")}</div>,
     },
     {
-        header: "Marital Status",
+        header: "Status",
         accessorKey: "maritalStatus",
         cell: ({ row }) => <div className="lowercase">{row.getValue("maritalStatus")}</div>,
+    },
+    {
+        header: "Size",
+        accessorKey: "size",
+        cell: ({ row }) => <div className="lowercase">{row.getValue("size")}</div>,
     },
     {
         header: "Created At",
@@ -153,9 +134,9 @@ export const newConvertColumns: ColumnDef<Convert>[] = [
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
                             <DropdownMenuItem
-                                onClick={() => navigator.clipboard.writeText(customer.convertId)}
+
                             >
-                                Copy Convert ID
+                                View members
                             </DropdownMenuItem>
                             <DropdownMenuItem
                                 onClick={() => navigator.clipboard.writeText(customer.email)}

@@ -8,6 +8,7 @@ export type FovouriteState = {
 
 type FavouriteAction = {
     addTo: (navItem?: any) => void,
+    remove: (navItem?: any) => void
 }
 
 type FavStore = FovouriteState & FavouriteAction
@@ -41,9 +42,20 @@ export const createFavStore = (
                     let updated = [...current, item];
 
                     // 3. If more than 4 items, keep last 4
-                    if (updated.length > 4) {
-                        updated = updated.slice(updated.length - 4);
+                    if (updated.length > 3) {
+                        updated = updated.slice(updated.length - 3);
                     }
+
+                    set({ items: updated });
+                },
+
+                remove: (item?: any) => {
+                    if (!item) return;
+
+                    const current = get().items ?? [];
+
+                    // 1. Check if item already exists (same name)
+                    const updated = current.filter((i) => i.name !== item.name);
 
                     set({ items: updated });
                 },
