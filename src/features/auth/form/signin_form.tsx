@@ -10,6 +10,7 @@ import { SVG } from "@/lib/utils/svg-assets";
 import { useNavigate } from "react-router";
 import { useAuthService } from "@/hooks/use-auth-service";
 import { toast } from "sonner";
+import { authStore } from "@/lib/store/useAuthStore";
 
 
 export default function SignInForm() {
@@ -30,9 +31,8 @@ export default function SignInForm() {
             {
                 onSuccess: (res) => {
                     console.log("Login successfulX", res);
-                    if (res.token) {
-                        localStorage.setItem("token", res.token);
-                        document.cookie = `token=${res.token}; path=/; max-age=86400; SameSite=Strict`;
+                    if (res.accessToken) {
+                        authStore.getState().save(res);
                     }
                     toast.success("Login successful");
                     navigate("/dashboard", { replace: true });

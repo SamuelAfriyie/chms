@@ -1,13 +1,12 @@
 import { ProtectedRoute } from "@/features/auth/middleware";
 import Signin from "@/features/auth/sigin";
+import Expenses from "@/features/dashboard/accounting_finance/expenses/expenses";
 import Offering from "@/features/dashboard/contribution_mgmt/offering/offering";
-import Tithe from "@/features/dashboard/contribution_mgmt/tithe/tithe";
-import Family from "@/features/dashboard/family_group_mgmt/family/family";
-import Group from "@/features/dashboard/family_group_mgmt/group/group";
+import Department from "@/features/dashboard/department_mgmt/department/department";
+import Facilitator from "@/features/dashboard/facilitator_mgmt/facilitator/facilitator";
 import Member from "@/features/dashboard/member_mgmt/member/member";
-import NewConvert from "@/features/dashboard/member_mgmt/new_convert/new-convert";
-import Visitor from "@/features/dashboard/member_mgmt/visitor/visitor";
 import Overview from "@/features/dashboard/overview/overview";
+import UserAccount from "@/features/dashboard/user_account/user-account";
 
 export type RouteType = {
     path: string,
@@ -32,18 +31,18 @@ export const routes: RouteType[] | any[] = [
                 path: "member-management",
                 children: [
                     { path: "member", element: <Member /> },
-                    { path: "visitor", element: <Visitor /> },
-                    { path: "new-convert", element: <NewConvert /> },
+                    // { path: "visitor", element: <Visitor /> },
+                    // { path: "new-convert", element: <NewConvert /> },
                 ]
             },
             // group management route
-            {
-                path: "group-management",
-                children: [
-                    { path: "group", element: <Group /> },
-                    { path: "family", element: <Family /> },
-                ]
-            },
+            // {
+            //     path: "group-management",
+            //     children: [
+            //         { path: "group", element: <Group /> },
+            //         { path: "family", element: <Family /> },
+            //     ]
+            // },
             // asset management route
             // {
             //     path: "asset-management",
@@ -56,25 +55,41 @@ export const routes: RouteType[] | any[] = [
             {
                 path: "accounting-finance",
                 children: [
-                    { path: "income", element: <div className="size-full bg-blue-50">Income</div> },
-                    { path: "expenses", element: <div className="size-full bg-blue-50">Expenses</div> },
-                    { path: "balance-sheet", element: <div className="size-full bg-blue-50">Balance sheet</div> },
+                    // { path: "income", element: <div className="size-full bg-blue-50">Income</div> },
+                    { path: "expenses", element: <Expenses /> },
+                    // { path: "balance-sheet", element: <div className="size-full bg-blue-50">Balance sheet</div> },
                 ]
             },
-            // Event & Service management route
+            // Department management route
             {
-                path: "event-service",
+                path: "department-management",
                 children: [
-                    { path: "service", element: <div className="size-full bg-blue-50">Service</div> },
-                    { path: "event", element: <div className="size-full bg-blue-50">Event</div> },
-                    { path: "order-of-service", element: <div className="size-full bg-blue-50">Order of service</div> },
+                    { path: "departments", element: <Department /> },
                 ]
             },
+            // Facilitator management route
+            {
+                path: "facilitator-management",
+                children: [
+                    { path: "facilitators", element: <Facilitator /> },
+                ]
+            },
+            // System administration
+            { path: "user-account", element: <UserAccount /> },
+            // Event & Service management route
+            // {
+            //     path: "event-service",
+            //     children: [
+            //         { path: "service", element: <div className="size-full bg-blue-50">Service</div> },
+            //         { path: "event", element: <div className="size-full bg-blue-50">Event</div> },
+            //         { path: "order-of-service", element: <div className="size-full bg-blue-50">Order of service</div> },
+            //     ]
+            // },
             // Event & Service management route
             {
                 path: "contribution-management",
                 children: [
-                    { path: "tithes", element: <Tithe /> },
+                    // { path: "tithes", element: <Tithe /> },
                     { path: "offerings", element: <Offering /> },
                 ]
             }

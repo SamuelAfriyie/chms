@@ -4,19 +4,16 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import type { ColumnDef } from "@tanstack/react-table"
 import { Edit, MoreHorizontal } from "lucide-react"
 
-
 export type Offering = {
-    id: number,
-    transactionId: string,
-    amount: string,
-    date: string,
-    member: string,
-    paymentMethod: string,
-    fundName: string,
-    reason: string,
-    createdBy: string,
-    createdAt: string,
-    updatedAt: string
+    id: string;
+    memberId: string;
+    contributionType: string;
+    amount: number;
+    paymentMethod: string;
+    reference?: string;
+    date: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export const offeringColumns: ColumnDef<Offering>[] = [
@@ -47,61 +44,49 @@ export const offeringColumns: ColumnDef<Offering>[] = [
         size: 40
     },
     {
-        accessorKey: "transactionId",
-        header: "Transaction ID",
+        accessorKey: "memberId",
+        header: "Member ID",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("transactionId")}</div>
+            <div className="capitalize">{row.getValue("memberId")}</div>
         ),
         size: 250
     },
     {
-        accessorKey: "member",
-        header: "Account Name",
+        accessorKey: "contributionType",
+        header: "Type",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("member")}</div>
+            <div className="capitalize">{row.getValue("contributionType")}</div>
         ),
-        size: 300
     },
     {
         header: "Amount",
         accessorKey: "amount",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("amount")}</div>,
+        cell: ({ row }) => <div>{row.getValue("amount")}</div>,
     },
     {
         header: "Payment Method",
         accessorKey: "paymentMethod",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("paymentMethod")}</div>,
+        cell: ({ row }) => <div className="uppercase">{row.getValue("paymentMethod")}</div>,
     },
     {
-        header: "Fund Name",
-        accessorKey: "fundName",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("fundName")}</div>,
+        header: "Reference",
+        accessorKey: "reference",
+        cell: ({ row }) => <div>{row.getValue("reference") ?? "—"}</div>,
     },
     {
         header: "Date",
         accessorKey: "date",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("date")}</div>,
-    },
-    {
-        header: "Created By",
-        accessorKey: "createdBy",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("createdBy")}</div>,
+        cell: ({ row }) => <div>{row.getValue("date")}</div>,
     },
     {
         header: "Created At",
         accessorKey: "createdAt",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("createdAt")}</div>,
+        cell: ({ row }) => <div>{row.getValue("createdAt")}</div>,
     },
     {
         header: "Updated At",
         accessorKey: "updatedAt",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("updatedAt")}</div>,
-    },
-    {
-        header: "Reason",
-        accessorKey: "reason",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("reason")}</div>,
-        size: 1000,
+        cell: ({ row }) => <div>{row.getValue("updatedAt")}</div>,
     },
     {
         id: "actions",
@@ -119,11 +104,7 @@ export const offeringColumns: ColumnDef<Offering>[] = [
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem
-
-                            >
-                                View member
-                            </DropdownMenuItem>
+                            <DropdownMenuItem>View member</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>
                                 <Edit />

@@ -1,9 +1,18 @@
 import axios, { isAxiosError } from "axios";
 import type { ServiceDefinition } from "./api-types";
+import { authStore } from "@/lib/store/useAuthStore";
 
 const index = axios.create({
   baseURL: import.meta.env.VITE_PUBLIC_BASE_URL || "",
   timeout: 10000,
+});
+
+index.interceptors.request.use((config) => {
+  const token = authStore.getState().token;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 const axiosApi = async (config: ServiceDefinition) => {

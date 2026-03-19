@@ -13,7 +13,7 @@ import {
     type SortingState,
     type VisibilityState,
 } from "@tanstack/react-table"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, ChevronFirst, ChevronLast, ChevronLeft, ChevronRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -23,6 +23,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
     Table,
     TableBody,
@@ -125,18 +126,18 @@ export function DataTable<T>({ columns, dataSource, columnToFilter, pinnedLeftCo
 
     return (
         <div className="size-full">
-            <div className="flex items-center py-2">
+            <div className="flex items-center py-1.5">
                 <Input
-                    placeholder={`Filter ${columnToFilter}...`}
+                    placeholder={`Search ${columnToFilter}...`}
                     value={(table.getColumn(columnToFilter)?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
                         table.getColumn(columnToFilter)?.setFilterValue(event.target.value)
                     }
-                    className="max-w-sm focus-visible:ring-0 h-7 rounded-sm"
+                    className="max-w-sm h-8 rounded-md border-border bg-muted focus-visible:ring-primary/30 focus-visible:border-primary text-sm"
                 />
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto focus-visible:ring-0 h-7" size={"sm"}>
+                        <Button variant="outline" className="ml-auto h-8 border-border text-muted-foreground hover:text-primary hover:border-primary" size={"sm"}>
                             Columns <ChevronDown />
                         </Button>
                     </DropdownMenuTrigger>
@@ -161,14 +162,14 @@ export function DataTable<T>({ columns, dataSource, columnToFilter, pinnedLeftCo
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
-            <div className="rounded-md border w-full overflow-auto h-full" style={{ height: height - 90 }}>
+            <div className="rounded-md border border-border w-full overflow-auto h-full" style={{ height: height - 90 }}>
                 <Table style={{ width: table.getTotalSize() }}>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
+                            <TableRow key={headerGroup.id} className="bg-muted border-b border-border hover:bg-muted">
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id} style={{ ...getCommonPinningStyles(header.column) }} className={cn(header.column.getIsPinned() ? 'dark:bg-black bg-white' : '')}>
+                                        <TableHead key={header.id} style={{ ...getCommonPinningStyles(header.column) }} className={cn("uppercase text-[11px] tracking-wider font-semibold text-muted-foreground py-3 px-4", header.column.getIsPinned() ? 'bg-muted' : 'bg-muted')}>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -183,25 +184,25 @@ export function DataTable<T>({ columns, dataSource, columnToFilter, pinnedLeftCo
                     </TableHeader>
                     <TableBody className="overflow-auto" style={{ height: 20 }}>
                         {isLoading ? (
-                            [...Array(15)].map((_, i) => ( // Display 15 skeleton rows while loading
-                                <TableRow key={`skeleton-${i}`}>
+                            [...Array(15)].map((_, i) => (
+                                <TableRow key={`skeleton-${i}`} className="bg-background">
                                     {columns.map((_, columnIndex) => (
-                                        <TableCell key={`cell-${i}-${columnIndex}`}>
-                                            <Skeleton className="h-4 w-20" />
+                                        <TableCell key={`cell-${i}-${columnIndex}`} className="py-3 px-4">
+                                            <Skeleton className="h-4 w-20 bg-muted animate-pulse" />
                                         </TableCell>
                                     ))}
                                 </TableRow>
                             ))
                         ) : table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row, i) => (
+                            table.getRowModel().rows.map((row) => (
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
                                     onClick={() => handleRowClick(row)}
-                                    className={cn(i % 2 && "bg-muted")}
+                                    className="bg-background hover:bg-accent transition-colors cursor-pointer border-b border-border/50"
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id} style={{ ...getCommonPinningStyles(cell.column) }} className={cn(cell.column.getIsPinned() ? 'dark:bg-black bg-white' : '')}>
+                                        <TableCell key={cell.id} style={{ ...getCommonPinningStyles(cell.column) }} className={cn("py-3 px-4 text-sm text-foreground", cell.column.getIsPinned() ? 'bg-background' : '')}>
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext()
@@ -211,10 +212,10 @@ export function DataTable<T>({ columns, dataSource, columnToFilter, pinnedLeftCo
                                 </TableRow>
                             ))
                         ) : (
-                            <TableRow>
+                            <TableRow className="bg-background hover:bg-background">
                                 <TableCell
                                     colSpan={columns.length}
-                                    className="h-24 text-center"
+                                    className="h-24 text-center text-muted-foreground"
                                 >
                                     No results.
                                 </TableCell>
@@ -223,78 +224,85 @@ export function DataTable<T>({ columns, dataSource, columnToFilter, pinnedLeftCo
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-end space-x-2 py-2">
-                <div className="flex-1 text-sm text-muted-foreground">
-                    {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                    {table.getFilteredRowModel().rows.length} row(s) selected.
-                </div>
-                <div className="space-x-2">
-                    {/* <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => table.previousPage()}
-                        disabled={!table.getCanPreviousPage()}
-                    >
-                        Previous
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => table.nextPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
-                        Next
-                    </Button> */}
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.firstPage()}
-                        disabled={!table.getCanPreviousPage()}
-                    >
-                        {'<<'}
-                    </Button>
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.previousPage()}
-                        disabled={!table.getCanPreviousPage()}
-                    >
-                        {'<'}
-                    </Button>
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.nextPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
-                        {'>'}
-                    </Button>
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.lastPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
-                        {'>>'}
-                    </Button>
-                    {/* <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto focus-visible:ring-0 h-7" size={"sm"}>
-                            Select <ChevronDown />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        {[5, 10, 20, 30, 40, 50].map((size) => {
-                                return (
-                                    <DropdownMenuCheckboxItem
-                                        key={size}
-                                        className="capitalize" 
-                                        onCheckedChange={(value) =>
-                                            alert(value)
-                                        }
-                                    >
+            <div className="flex items-center justify-between py-2 gap-4 flex-wrap border-t border-border/50">
+                {/* Left: selection count + rows per page */}
+                <div className="flex items-center gap-4">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">
+                        {table.getFilteredSelectedRowModel().rows.length} of{" "}
+                        {table.getFilteredRowModel().rows.length} row(s) selected
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                        <span className="text-xs text-muted-foreground whitespace-nowrap">Rows per page</span>
+                        <Select
+                            value={String(table.getState().pagination.pageSize)}
+                            onValueChange={(v) => table.setPageSize(Number(v))}
+                        >
+                            <SelectTrigger className="h-7 w-[70px] text-xs border-border focus:ring-primary/30">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {[10, 15, 20, 30, 50].map((size) => (
+                                    <SelectItem key={size} value={String(size)} className="text-xs">
                                         {size}
-                                    </DropdownMenuCheckboxItem>
-                                )
-                            })}
-                    </DropdownMenuContent>
-                </DropdownMenu> */}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+
+                {/* Right: page info + navigation */}
+                <div className="flex items-center gap-1.5">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap mr-1">
+                        Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                    </span>
+                    <Button size="icon" variant="outline" className="h-7 w-7 border-border hover:bg-accent hover:border-primary hover:text-primary"
+                        onClick={() => table.firstPage()} disabled={!table.getCanPreviousPage()}>
+                        <ChevronFirst className="size-3.5" />
+                    </Button>
+                    <Button size="icon" variant="outline" className="h-7 w-7 border-border hover:bg-accent hover:border-primary hover:text-primary"
+                        onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                        <ChevronLeft className="size-3.5" />
+                    </Button>
+
+                    {/* Page number buttons */}
+                    {(() => {
+                        const current = table.getState().pagination.pageIndex;
+                        const total = table.getPageCount();
+                        const delta = 1;
+                        const pages: (number | "…")[] = [];
+                        for (let i = 0; i < total; i++) {
+                            if (i === 0 || i === total - 1 || (i >= current - delta && i <= current + delta)) {
+                                pages.push(i);
+                            } else if (pages[pages.length - 1] !== "…") {
+                                pages.push("…");
+                            }
+                        }
+                        return pages.map((p, idx) =>
+                            p === "…" ? (
+                                <span key={`ellipsis-${idx}`} className="text-xs text-muted-foreground px-1">…</span>
+                            ) : (
+                                <Button
+                                    key={p}
+                                    size="icon"
+                                    variant={p === current ? "default" : "outline"}
+                                    className={cn("h-7 w-7 text-xs border-border", p !== current && "hover:bg-accent hover:border-primary hover:text-primary")}
+                                    onClick={() => table.setPageIndex(p as number)}
+                                >
+                                    {(p as number) + 1}
+                                </Button>
+                            )
+                        );
+                    })()}
+
+                    <Button size="icon" variant="outline" className="h-7 w-7 border-border hover:bg-accent hover:border-primary hover:text-primary"
+                        onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                        <ChevronRight className="size-3.5" />
+                    </Button>
+                    <Button size="icon" variant="outline" className="h-7 w-7 border-border hover:bg-accent hover:border-primary hover:text-primary"
+                        onClick={() => table.lastPage()} disabled={!table.getCanNextPage()}>
+                        <ChevronLast className="size-3.5" />
+                    </Button>
                 </div>
             </div>
         </div>

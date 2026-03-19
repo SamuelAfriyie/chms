@@ -8,17 +8,17 @@ import { ArrowUpDown, Copy, Edit, MoreHorizontal } from "lucide-react"
 
 export type Member = {
     id: number,
-    membershipId: string, //e.g SUP001
+    membershipId: string,
     fName: string,
     lName: string,
+    gender: string,
+    dateOfBirth: string,
     phone: string,
     email: string,
-    address: string,
-    status: "Active" | "Inactive",
-    maritalStatus: string,
-    baptismStatus: string,
+    ministry: string,
+    joinDate: string,
     createdAt: string,
-    updatedAt: string
+    updatedAt: string,
 }
 
 export const memberColumns: ColumnDef<Member>[] = [
@@ -115,30 +115,29 @@ export const memberColumns: ColumnDef<Member>[] = [
         cell: ({ row }) => <div className="lowercase">{row.getValue("phone")}</div>,
     },
     {
-        header: "Marital Status",
-        accessorKey: "maritalStatus",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("maritalStatus")}</div>,
+        header: "Gender",
+        accessorKey: "gender",
+        cell: ({ row }) => <div className="capitalize">{(row.getValue("gender") as string).toLowerCase()}</div>,
     },
     {
-        header: "Baptism Status",
-        accessorKey: "baptismStatus",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("baptismStatus")}</div>,
+        header: "Date of Birth",
+        accessorKey: "dateOfBirth",
+        cell: ({ row }) => <div>{row.getValue("dateOfBirth")}</div>,
+    },
+    {
+        header: "Ministry",
+        accessorKey: "ministry",
+        cell: ({ row }) => <div className="capitalize">{(row.getValue("ministry") as string).toLowerCase()}</div>,
+    },
+    {
+        header: "Join Date",
+        accessorKey: "joinDate",
+        cell: ({ row }) => <div>{row.getValue("joinDate")}</div>,
     },
     {
         header: "Created At",
         accessorKey: "createdAt",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("createdAt")}</div>,
-    },
-    {
-        header: "Updated At",
-        accessorKey: "updatedAt",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("updatedAt")}</div>,
-    },
-    {
-        header: "Address",
-        accessorKey: "address",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("address")}</div>,
-        size: 1000,
+        cell: ({ row }) => <div>{row.getValue("createdAt")}</div>,
     },
     {
         id: "actions",

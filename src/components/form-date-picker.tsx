@@ -1,4 +1,4 @@
-import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { FormControl, FormItem, FormLabel } from "./ui/form";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
@@ -25,7 +25,7 @@ export default function FormDatePicker({ field, label, placeholder = "Pick a dat
                         <Button
                             variant={"outline"}
                             className={cn(
-                                "md:w-[calc(100%-40px)] pl-3 text-left font-normal h-8 rounded-sm bg-transparent",
+                                "w-full pl-3 text-left font-normal h-8 rounded-sm",
                                 !field.value && "text-muted-foreground", className
                             )}
                         >
@@ -38,9 +38,8 @@ export default function FormDatePicker({ field, label, placeholder = "Pick a dat
                         </Button>
                     </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 z-50" align="start">
+                <PopoverContent className="w-auto p-0" align="end" collisionPadding={8}>
                     <Calendar
-                        className="bg-white dark:bg-black"
                         mode="single"
                         selected={field.value}
                         onSelect={field.onChange}
@@ -50,7 +49,6 @@ export default function FormDatePicker({ field, label, placeholder = "Pick a dat
                     />
                 </PopoverContent>
             </Popover>
-            {/* <FormMessage /> */}
         </FormItem>
     );
 }

@@ -22,7 +22,7 @@ export default function FormInputField({ field, suffix, placeholder, label, inpu
             <div className="w-full">
                 <div className="relative">
                     <FormControl>
-                        <Input {...field} className={cn("pr-10 rounded-sm focus-visible:ring-0 h-7", inputClassName)} placeholder={placeholder} type={type} />
+                        <Input {...field} className={cn("pr-10 rounded-sm focus-visible:ring-0 h-8", inputClassName)} placeholder={placeholder} type={type} />
                     </FormControl>
                     {
                         suffix && (

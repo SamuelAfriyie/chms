@@ -42,38 +42,49 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
+  /* Sanctuary White — main content surfaces */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
+  /* Text Main #2D2D2D — high-readability body text */
+  --foreground: oklch(0.217 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
+  --card-foreground: oklch(0.217 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.217 0 0);
+  /* Impact Blue #1A1A9E — primary actions, buttons, active tabs */
+  --primary: oklch(0.285 0.218 264);
+  --primary-foreground: oklch(1 0 0);
+  /* Steel Mist #F4F4F9 — app background, inactive fills */
+  --secondary: oklch(0.968 0.003 286);
+  --secondary-foreground: oklch(0.285 0.218 264);
+  --muted: oklch(0.968 0.003 286);
+  --muted-foreground: oklch(0.48 0.016 286);
+  /* Faint blue tint #F0F0FF — table row hover, accent surfaces */
+  --accent: oklch(0.965 0.012 264);
+  --accent-foreground: oklch(0.285 0.218 264);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.646 0.222 41.116);
+  /* Halo Gray #E0E0E6 — borders, dividers, table grid lines */
+  --border: oklch(0.898 0.004 286);
+  --input: oklch(0.898 0.004 286);
+  /* Impact Blue ring for focus states */
+  --ring: oklch(0.285 0.218 264);
+  /* Divine Gold #D4AF37 — success, goal reached */
+  --chart-1: oklch(0.738 0.142 81);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  /* Sidebar — Impact Blue background */
+  --sidebar: oklch(0.285 0.218 264);
+  --sidebar-foreground: oklch(0.97 0 0);
+  /* Divine Gold for active nav indicator */
+  --sidebar-primary: oklch(0.738 0.142 81);
+  --sidebar-primary-foreground: oklch(0.217 0 0);
+  /* Slightly lighter blue for sidebar hover */
+  --sidebar-accent: oklch(0.35 0.18 264);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(0.38 0.15 264);
+  --sidebar-ring: oklch(0.738 0.142 81);
 }
 
 .dark {
@@ -115,6 +126,22 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-muted text-foreground;
+    font-family: 'Inter', 'Montserrat', system-ui, sans-serif;
+    font-size: 14px;
+  }
+  h1 {
+    @apply text-2xl font-semibold;
+    color: var(--primary);
+  }
+  h2 {
+    @apply text-lg font-medium;
+    color: var(--primary);
+  }
+  /* Input field: Steel Mist background + Halo Gray border + Impact Blue focus */
+  input:not([type='checkbox']):not([type='radio']),
+  textarea,
+  select {
+    background-color: var(--muted);
   }
 }

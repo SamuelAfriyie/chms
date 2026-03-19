@@ -64,7 +64,7 @@ export function NavMain({
                     // const Icon = Icons[subItem.icon as keyof typeof Icons] as LucideIcon;
 
                     return (<SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild className={cn(selected == subItem.url && "bg-red-100 hover:bg-red-200")} onClick={() => {
+                      <SidebarMenuSubButton asChild className={cn(selected == subItem.url && "border-l-[3px] border-sidebar-primary bg-sidebar-accent/40 text-sidebar-foreground font-medium")} onClick={() => {
                         toggle(subItem.url);
                         addTo({ name: subItem.title, url: subItem.url, icon: subItem.icon?.displayName });
                       }}>
