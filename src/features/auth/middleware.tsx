@@ -10,8 +10,10 @@ export const ProtectedRoute = () => {
     return <DashboardLayout />;
 };
 
-function useAuth(): { isAuthenticated: any; } {
-    const token = localStorage.getItem('token') ?? undefined;
-    console.log("Token: ", token);
-    return { isAuthenticated: !!token }
+function useAuth(): { isAuthenticated: boolean } {
+    const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
+    return { isAuthenticated: !!token };
 }

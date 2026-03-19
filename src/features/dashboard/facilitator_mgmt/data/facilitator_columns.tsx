@@ -4,19 +4,18 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import type { ColumnDef } from "@tanstack/react-table"
 import { Edit, MoreHorizontal } from "lucide-react"
 
-export type Offering = {
-    id: string;
-    memberId: string;
-    contributionType: string;
-    amount: number;
-    paymentMethod: string;
-    reference?: string;
-    date: string;
-    createdAt: string;
-    updatedAt: string;
+export type Facilitator = {
+    id: string,
+    name: string,
+    role: string,
+    ministryType: string,
+    phone: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string
 }
 
-export const offeringColumns: ColumnDef<Offering>[] = [
+export const facilitatorColumns: ColumnDef<Facilitator>[] = [
     {
         id: "select",
         enablePinning: true,
@@ -44,39 +43,40 @@ export const offeringColumns: ColumnDef<Offering>[] = [
         size: 40
     },
     {
-        accessorKey: "memberId",
-        header: "Member ID",
+        accessorKey: "name",
+        header: "Name",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("memberId")}</div>
+            <div className="capitalize">{row.getValue("name")}</div>
         ),
-        size: 250
+        size: 240
     },
     {
-        accessorKey: "contributionType",
-        header: "Type",
+        accessorKey: "role",
+        header: "Role",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("contributionType")}</div>
+            <div className="capitalize">{row.getValue("role")}</div>
         ),
+        size: 160
     },
     {
-        header: "Amount",
-        accessorKey: "amount",
-        cell: ({ row }) => <div>{row.getValue("amount")}</div>,
+        accessorKey: "ministryType",
+        header: "Ministry",
+        cell: ({ row }) => (
+            <div className="capitalize">{row.getValue("ministryType")}</div>
+        ),
+        size: 160
     },
     {
-        header: "Payment Method",
-        accessorKey: "paymentMethod",
-        cell: ({ row }) => <div className="uppercase">{row.getValue("paymentMethod")}</div>,
+        accessorKey: "phone",
+        header: "Phone",
+        cell: ({ row }) => <div>{row.getValue("phone")}</div>,
+        size: 160
     },
     {
-        header: "Reference",
-        accessorKey: "reference",
-        cell: ({ row }) => <div>{row.getValue("reference") ?? "—"}</div>,
-    },
-    {
-        header: "Date",
-        accessorKey: "date",
-        cell: ({ row }) => <div>{row.getValue("date")}</div>,
+        accessorKey: "email",
+        header: "Email",
+        cell: ({ row }) => <div>{row.getValue("email")}</div>,
+        size: 240
     },
     {
         header: "Created At",
@@ -104,11 +104,13 @@ export const offeringColumns: ColumnDef<Offering>[] = [
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem>View member</DropdownMenuItem>
-                            <DropdownMenuSeparator />
                             <DropdownMenuItem>
                                 <Edit />
                                 Edit
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>
+                                View Profile
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

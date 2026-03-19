@@ -1,6 +1,6 @@
 import { SideSheet } from "@/components/side-sheet";
 import { Button } from "@/components/ui/button";
-import { Forward, Save } from "lucide-react";
+import { Forward, Loader2, Save } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
@@ -14,10 +14,13 @@ import { Separator } from "@/components/ui/separator";
 import FormSelectField from "@/components/form-select-field";
 import FormDatePicker from "@/components/form-date-picker";
 import GroupAssignment from "./group_assignment";
+import { useCreateMember } from "@/hooks/use-member-service";
+import { toast } from "sonner";
 
 interface MemberFormType {
     open: boolean,
-    setOpen: (v: boolean) => void
+    setOpen: (v: boolean) => void,
+    onSuccess?: () => void
 }
 
 const init: z.infer<typeof MemberSchema> = {
@@ -27,16 +30,16 @@ const init: z.infer<typeof MemberSchema> = {
     phone: "",
     gender: "",
     dob: new Date(),
+    joinDate: new Date(),
     maritalStatus: false,
-    baptismStatus: "",
-    membershipDate: new Date(),
+    ministry: "",
     isActive: false,
     address: "",
-    membershipStatus: ""
 }
 
-export default function MemberForm({ open, setOpen }: MemberFormType) {
+export default function MemberForm({ open, setOpen, onSuccess }: MemberFormType) {
     const [step, setStep] = useState(1);
+    const { mutate, isPending } = useCreateMember();
 
     const next = () => setStep((prev) => Math.min(prev + 1, 4));
     const back = () => setStep((prev) => Math.max(prev - 1, 1));
@@ -45,6 +48,33 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
         resolver: zodResolver(MemberSchema),
         defaultValues: init,
     });
+
+    const onSubmit = (values: z.infer<typeof MemberSchema>) => {
+        mutate(
+            {
+                firstName: values.firstName,
+                lastName: values.lastName,
+                gender: values.gender,
+                dateOfBirth: values.dob.toISOString(),
+                phone: values.phone,
+                email: values.email,
+                ministry: values.ministry,
+                joinDate: values.joinDate.toISOString(),
+            },
+            {
+                onSuccess: () => {
+                    toast.success("Member added successfully");
+                    form.reset(init);
+                    setStep(1);
+                    setOpen(false);
+                    onSuccess?.();
+                },
+                onError: (error: any) => {
+                    toast.error(error?.message ?? "Failed to add member");
+                },
+            }
+        );
+    };
 
     return (
         <SideSheet open={open} onOpenChange={setOpen} title="Add New Member" description="Add a new member to the church"
@@ -64,11 +94,14 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                 Next
                             </Button>
                         ) : (
-                            <Button type="submit" className="w-full" onClick={() => {
-                                setOpen(false);
-                                setStep(1)
-                            }} >
-                                <Save /> Save
+                            <Button
+                                type="submit"
+                                className="w-full"
+                                disabled={isPending}
+                                onClick={form.handleSubmit(onSubmit)}
+                            >
+                                {isPending ? <Loader2 className="animate-spin" /> : <Save />}
+                                {isPending ? "Saving..." : "Save"}
                             </Button>
                         )}
                     </div>
@@ -76,7 +109,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
             } >
             {/* form section */}
             <FormProvider {...form}>
-                <form className="w-full h-screen bg-muted/50 border-y overflow-y-auto" onSubmit={form.handleSubmit(() => { })}>
+                <form className="w-full h-screen bg-muted/50 border-y overflow-y-auto" onSubmit={form.handleSubmit(onSubmit)}>
                     {/* Step Tracker */}
                     <StepTracker step={step} items={[1, 2, 3, 4]} className="my-4" />
                     <Separator />
@@ -144,35 +177,26 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                 <div className="w-full md:pl-5 pr-[42px]">
                                     <FormField
                                         control={form.control}
-                                        name="dob"
+                                        name="joinDate"
                                         render={({ field }) => (
-                                            <FormDatePicker label="Memb. Date:" field={field} />
+                                            <FormDatePicker label="Join Date:" field={field} />
                                         )}
                                     />
-                                </div>
-                                <div className="w-full md:pl-[9px]  flex items-center">
-                                    <aside className="w-full flex-1">
-                                        <FormField
-                                            control={form.control}
-                                            name="membershipStatus"
-                                            render={({ field }) => (
-                                                <FormSelectField label="Memb. Status:" field={field}
-                                                    valueExpr="value" keyExpr="label"
-                                                    options={[]}
-                                                />
-                                            )}
-                                        />
-                                    </aside>
                                 </div>
                                 <div className="w-full flex items-center">
                                     <aside className="w-full flex-1">
                                         <FormField
                                             control={form.control}
-                                            name="baptismStatus"
+                                            name="ministry"
                                             render={({ field }) => (
-                                                <FormSelectField label="Baptism Status:" field={field}
+                                                <FormSelectField label="Ministry:" field={field}
                                                     valueExpr="value" keyExpr="label"
-                                                    options={[]}
+                                                    options={[
+                                                        { "label": "Adult", "value": "ADULT" },
+                                                        { "label": "Youth", "value": "YOUTH" },
+                                                        { "label": "Children", "value": "CHILDREN" },
+                                                        { "label": "Senior", "value": "SENIOR" },
+                                                    ]}
                                                 />
                                             )}
                                         />
@@ -228,7 +252,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                     <aside className="w-full flex-1">
                                         <FormField
                                             control={form.control}
-                                            name="baptismStatus"
+                                            name="gender"
                                             render={({ field }) => (
                                                 <FormSelectField label="Family(Household):" field={field}
                                                     valueExpr="value" keyExpr="label"
@@ -242,7 +266,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                     <aside className="w-full flex-1 md:pl-[37px]">
                                         <FormField
                                             control={form.control}
-                                            name="baptismStatus"
+                                            name="gender"
                                             render={({ field }) => (
                                                 <FormSelectField label="Relationship:" field={field}
                                                     valueExpr="value" keyExpr="label"
@@ -256,7 +280,7 @@ export default function MemberForm({ open, setOpen }: MemberFormType) {
                                     <aside className="w-full flex-1 md:pl-[15px]">
                                         <FormField
                                             control={form.control}
-                                            name="baptismStatus"
+                                            name="isActive"
                                             render={({ field }) => (
                                                 <FormSelectField label="Primary Contact:" field={field}
                                                     valueExpr="value" keyExpr="label"

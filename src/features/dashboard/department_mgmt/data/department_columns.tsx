@@ -2,21 +2,18 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type { ColumnDef } from "@tanstack/react-table"
-import { Edit, MoreHorizontal } from "lucide-react"
+import { Edit, MoreHorizontal, UserCheck } from "lucide-react"
 
-export type Offering = {
+export type Department = {
     id: string;
-    memberId: string;
-    contributionType: string;
-    amount: number;
-    paymentMethod: string;
-    reference?: string;
-    date: string;
+    name: string;
+    description?: string;
+    leaderId?: string;
     createdAt: string;
     updatedAt: string;
 }
 
-export const offeringColumns: ColumnDef<Offering>[] = [
+export const departmentColumns: ColumnDef<Department>[] = [
     {
         id: "select",
         enablePinning: true,
@@ -44,39 +41,20 @@ export const offeringColumns: ColumnDef<Offering>[] = [
         size: 40
     },
     {
-        accessorKey: "memberId",
-        header: "Member ID",
+        accessorKey: "name",
+        header: "Department Name",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("memberId")}</div>
+            <div className="capitalize">{row.getValue("name")}</div>
         ),
-        size: 250
+        size: 280
     },
     {
-        accessorKey: "contributionType",
-        header: "Type",
+        accessorKey: "leaderId",
+        header: "Leader ID",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("contributionType")}</div>
+            <div>{row.getValue("leaderId") ?? "—"}</div>
         ),
-    },
-    {
-        header: "Amount",
-        accessorKey: "amount",
-        cell: ({ row }) => <div>{row.getValue("amount")}</div>,
-    },
-    {
-        header: "Payment Method",
-        accessorKey: "paymentMethod",
-        cell: ({ row }) => <div className="uppercase">{row.getValue("paymentMethod")}</div>,
-    },
-    {
-        header: "Reference",
-        accessorKey: "reference",
-        cell: ({ row }) => <div>{row.getValue("reference") ?? "—"}</div>,
-    },
-    {
-        header: "Date",
-        accessorKey: "date",
-        cell: ({ row }) => <div>{row.getValue("date")}</div>,
+        size: 240
     },
     {
         header: "Created At",
@@ -87,6 +65,14 @@ export const offeringColumns: ColumnDef<Offering>[] = [
         header: "Updated At",
         accessorKey: "updatedAt",
         cell: ({ row }) => <div>{row.getValue("updatedAt")}</div>,
+    },
+    {
+        accessorKey: "description",
+        header: "Description",
+        cell: ({ row }) => (
+            <div>{row.getValue("description")}</div>
+        ),
+        size: 1000
     },
     {
         id: "actions",
@@ -104,11 +90,14 @@ export const offeringColumns: ColumnDef<Offering>[] = [
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem>View member</DropdownMenuItem>
-                            <DropdownMenuSeparator />
                             <DropdownMenuItem>
                                 <Edit />
                                 Edit
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>
+                                <UserCheck />
+                                Assign Leader
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

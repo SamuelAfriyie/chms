@@ -13,7 +13,7 @@ import {
     type SortingState,
     type VisibilityState,
 } from "@tanstack/react-table"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, ChevronFirst, ChevronLast, ChevronLeft, ChevronRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -23,6 +23,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
     Table,
     TableBody,
@@ -223,78 +224,85 @@ export function DataTable<T>({ columns, dataSource, columnToFilter, pinnedLeftCo
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-end space-x-2 py-2">
-                <div className="flex-1 text-sm text-muted-foreground">
-                    {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                    {table.getFilteredRowModel().rows.length} row(s) selected.
-                </div>
-                <div className="space-x-2">
-                    {/* <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => table.previousPage()}
-                        disabled={!table.getCanPreviousPage()}
-                    >
-                        Previous
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => table.nextPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
-                        Next
-                    </Button> */}
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.firstPage()}
-                        disabled={!table.getCanPreviousPage()}
-                    >
-                        {'<<'}
-                    </Button>
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.previousPage()}
-                        disabled={!table.getCanPreviousPage()}
-                    >
-                        {'<'}
-                    </Button>
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.nextPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
-                        {'>'}
-                    </Button>
-                    <Button
-                        size={"icon"} className="dark:text-white h-7" variant={"outline"}
-                        onClick={() => table.lastPage()}
-                        disabled={!table.getCanNextPage()}
-                    >
-                        {'>>'}
-                    </Button>
-                    {/* <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto focus-visible:ring-0 h-7" size={"sm"}>
-                            Select <ChevronDown />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        {[5, 10, 20, 30, 40, 50].map((size) => {
-                                return (
-                                    <DropdownMenuCheckboxItem
-                                        key={size}
-                                        className="capitalize" 
-                                        onCheckedChange={(value) =>
-                                            alert(value)
-                                        }
-                                    >
+            <div className="flex items-center justify-between py-2 gap-4 flex-wrap">
+                {/* Left: selection count + rows per page */}
+                <div className="flex items-center gap-4">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">
+                        {table.getFilteredSelectedRowModel().rows.length} of{" "}
+                        {table.getFilteredRowModel().rows.length} row(s) selected
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                        <span className="text-xs text-muted-foreground whitespace-nowrap">Rows per page</span>
+                        <Select
+                            value={String(table.getState().pagination.pageSize)}
+                            onValueChange={(v) => table.setPageSize(Number(v))}
+                        >
+                            <SelectTrigger className="h-7 w-[70px] text-xs focus:ring-0">
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {[10, 15, 20, 30, 50].map((size) => (
+                                    <SelectItem key={size} value={String(size)} className="text-xs">
                                         {size}
-                                    </DropdownMenuCheckboxItem>
-                                )
-                            })}
-                    </DropdownMenuContent>
-                </DropdownMenu> */}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+
+                {/* Right: page info + navigation */}
+                <div className="flex items-center gap-1.5">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap mr-1">
+                        Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                    </span>
+                    <Button size="icon" variant="outline" className="h-7 w-7"
+                        onClick={() => table.firstPage()} disabled={!table.getCanPreviousPage()}>
+                        <ChevronFirst className="size-3.5" />
+                    </Button>
+                    <Button size="icon" variant="outline" className="h-7 w-7"
+                        onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                        <ChevronLeft className="size-3.5" />
+                    </Button>
+
+                    {/* Page number buttons */}
+                    {(() => {
+                        const current = table.getState().pagination.pageIndex;
+                        const total = table.getPageCount();
+                        const delta = 1;
+                        const pages: (number | "…")[] = [];
+                        for (let i = 0; i < total; i++) {
+                            if (i === 0 || i === total - 1 || (i >= current - delta && i <= current + delta)) {
+                                pages.push(i);
+                            } else if (pages[pages.length - 1] !== "…") {
+                                pages.push("…");
+                            }
+                        }
+                        return pages.map((p, idx) =>
+                            p === "…" ? (
+                                <span key={`ellipsis-${idx}`} className="text-xs text-muted-foreground px-1">…</span>
+                            ) : (
+                                <Button
+                                    key={p}
+                                    size="icon"
+                                    variant={p === current ? "default" : "outline"}
+                                    className="h-7 w-7 text-xs"
+                                    onClick={() => table.setPageIndex(p as number)}
+                                >
+                                    {(p as number) + 1}
+                                </Button>
+                            )
+                        );
+                    })()}
+
+                    <Button size="icon" variant="outline" className="h-7 w-7"
+                        onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                        <ChevronRight className="size-3.5" />
+                    </Button>
+                    <Button size="icon" variant="outline" className="h-7 w-7"
+                        onClick={() => table.lastPage()} disabled={!table.getCanNextPage()}>
+                        <ChevronLast className="size-3.5" />
+                    </Button>
                 </div>
             </div>
         </div>

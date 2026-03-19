@@ -1,26 +1,41 @@
 import { DataTable } from "@/components/data-table";
 import { Card } from "@/components/ui/card";
-import { memberColumns } from "../data/member_columns";
+import { memberColumns, type Member } from "../data/member_columns";
 import AutoResponsive from "@/components/auto_responsive";
 import { memberSampleData } from "../data/memberSampleData";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MemberForm from "./components/member_form";
 import MemberToolbar from "./components/member_toolbar";
+import { useGetMembers } from "@/hooks/use-member-service";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Member() {
     const [open, setOpen] = useState<boolean>(false);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [refresh, _setRefresh] = useState<boolean>(false);
+    const queryClient = useQueryClient();
+    const { data, isLoading, isError } = useGetMembers({ page: 1, limit: 50 });
 
-    useEffect(() => {
-        setLoading(true);
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, [refresh]);
+    const tableData: Member[] = isError || !data?.data?.length
+        ? memberSampleData
+        : data.data.map((m, index) => ({
+            id: index,
+            membershipId: m.id,
+            fName: m.firstName,
+            lName: m.lastName,
+            phone: m.phone,
+            email: m.email,
+            address: "",
+            status: "Active",
+            maritalStatus: "",
+            baptismStatus: m.ministry,
+            createdAt: m.createdAt,
+            updatedAt: m.updatedAt,
+        }));
+
+    const handleSuccess = () => {
+        queryClient.invalidateQueries({ queryKey: ["members"] });
+    };
 
     return (
         <main className="size-full overflow-hidden px-1">
@@ -32,10 +47,10 @@ export default function Member() {
             </header>
             <AutoResponsive>
                 <Card className="gap-0 py-0 px-2 rounded-md h-full">
-                    <DataTable columns={memberColumns} dataSource={memberSampleData} columnToFilter="fName" pinnedLeftColumns={['select']} isLoading={loading} />
+                    <DataTable columns={memberColumns} dataSource={tableData} columnToFilter="fName" pinnedLeftColumns={['select']} isLoading={isLoading} />
                 </Card>
             </AutoResponsive>
-            <MemberForm open={open} setOpen={setOpen} />
+            <MemberForm open={open} setOpen={setOpen} onSuccess={handleSuccess} />
         </main>
     )
 }

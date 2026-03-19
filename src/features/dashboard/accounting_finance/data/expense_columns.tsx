@@ -2,21 +2,21 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type { ColumnDef } from "@tanstack/react-table"
-import { Edit, MoreHorizontal } from "lucide-react"
+import { Edit, MoreHorizontal, Trash2 } from "lucide-react"
 
-export type Offering = {
+export type Expense = {
     id: string;
-    memberId: string;
-    contributionType: string;
+    title: string;
+    category: string;
+    department: string;
     amount: number;
-    paymentMethod: string;
-    reference?: string;
-    date: string;
+    expenseDate: string;
+    description?: string;
     createdAt: string;
     updatedAt: string;
 }
 
-export const offeringColumns: ColumnDef<Offering>[] = [
+export const expenseColumns: ColumnDef<Expense>[] = [
     {
         id: "select",
         enablePinning: true,
@@ -44,19 +44,28 @@ export const offeringColumns: ColumnDef<Offering>[] = [
         size: 40
     },
     {
-        accessorKey: "memberId",
-        header: "Member ID",
+        accessorKey: "title",
+        header: "Title",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("memberId")}</div>
+            <div className="capitalize">{row.getValue("title")}</div>
         ),
-        size: 250
+        size: 280
     },
     {
-        accessorKey: "contributionType",
-        header: "Type",
+        accessorKey: "category",
+        header: "Category",
         cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("contributionType")}</div>
+            <div className="capitalize">{row.getValue("category")}</div>
         ),
+        size: 180
+    },
+    {
+        accessorKey: "department",
+        header: "Department",
+        cell: ({ row }) => (
+            <div className="capitalize">{row.getValue("department")}</div>
+        ),
+        size: 200
     },
     {
         header: "Amount",
@@ -64,19 +73,9 @@ export const offeringColumns: ColumnDef<Offering>[] = [
         cell: ({ row }) => <div>{row.getValue("amount")}</div>,
     },
     {
-        header: "Payment Method",
-        accessorKey: "paymentMethod",
-        cell: ({ row }) => <div className="uppercase">{row.getValue("paymentMethod")}</div>,
-    },
-    {
-        header: "Reference",
-        accessorKey: "reference",
-        cell: ({ row }) => <div>{row.getValue("reference") ?? "—"}</div>,
-    },
-    {
-        header: "Date",
-        accessorKey: "date",
-        cell: ({ row }) => <div>{row.getValue("date")}</div>,
+        header: "Expense Date",
+        accessorKey: "expenseDate",
+        cell: ({ row }) => <div>{row.getValue("expenseDate")}</div>,
     },
     {
         header: "Created At",
@@ -87,6 +86,14 @@ export const offeringColumns: ColumnDef<Offering>[] = [
         header: "Updated At",
         accessorKey: "updatedAt",
         cell: ({ row }) => <div>{row.getValue("updatedAt")}</div>,
+    },
+    {
+        accessorKey: "description",
+        header: "Description",
+        cell: ({ row }) => (
+            <div>{row.getValue("description")}</div>
+        ),
+        size: 1000
     },
     {
         id: "actions",
@@ -104,11 +111,14 @@ export const offeringColumns: ColumnDef<Offering>[] = [
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem>View member</DropdownMenuItem>
-                            <DropdownMenuSeparator />
                             <DropdownMenuItem>
                                 <Edit />
                                 Edit
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem className="text-destructive focus:text-destructive">
+                                <Trash2 />
+                                Delete
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

@@ -4,8 +4,10 @@ import * as React from "react"
 import {
   AlarmClockMinus,
   Bot,
+  Building2,
   Church,
-  // Gem,
+  Gem,
+  GraduationCap,
   Group,
   House,
   LayoutDashboard,
@@ -113,6 +115,42 @@ const data = {
         },
       ],
     },
+    {
+      title: "Department Mgmt",
+      url: "#",
+      icon: Building2,
+      items: [
+        {
+          title: "Departments",
+          url: "/dashboard/department-management/departments",
+          icon: Building2,
+        },
+      ],
+    },
+    {
+      title: "Facilitators",
+      url: "#",
+      icon: GraduationCap,
+      items: [
+        {
+          title: "Facilitators",
+          url: "/dashboard/facilitator-management/facilitators",
+          icon: GraduationCap,
+        },
+      ],
+    },
+    {
+      title: "Accounting & Finance",
+      url: "#",
+      icon: Gem,
+      items: [
+        {
+          title: "Expenses",
+          url: "/dashboard/accounting-finance/expenses",
+          icon: LayoutDashboard,
+        },
+      ],
+    },
     // {
     //   title: "Asset Management",
     //   url: "#",
@@ -126,28 +164,6 @@ const data = {
     //     {
     //       title: "Inventory",
     //       url: "/dashboard/asset-management/inventory",
-    //       icon: LayoutDashboard,
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: "Accounting & Finance",
-    //   url: "#",
-    //   icon: Gem,
-    //   items: [
-    //     {
-    //       title: "Income",
-    //       url: "/dashboard/accounting-finance/income",
-    //       icon: LayoutDashboard,
-    //     },
-    //     {
-    //       title: "Expenses",
-    //       url: "/dashboard/accounting-finance/expenses",
-    //       icon: LayoutDashboard,
-    //     },
-    //     {
-    //       title: "Balance sheet",
-    //       url: "/dashboard/accounting-finance/balance-sheet",
     //       icon: LayoutDashboard,
     //     },
     //   ],
@@ -178,7 +194,7 @@ const data = {
   projects: [
     {
       name: "User Account",
-      url: "#",
+      url: "/dashboard/user-account",
       icon: Shield,
     },
     {

@@ -3,22 +3,19 @@ import z from "zod";
 export const MemberSchema = z.object({
     firstName: z.string().min(1, { message: "First name cannot be empty" }),
     lastName: z.string().min(1, { message: "Last name cannot be empty" }),
-    email: z.string().min(1, { message: "Email cannot be empty" }).refine((e) => {
-        return !e.includes("@")
-    }, { message: "Invalid email address" }),
+    email: z.string().min(1, { message: "Email cannot be empty" }),
     dob: z.date().refine(
         (date) => date <= new Date(),
         { message: 'Date cannot be in the future' }
     ),
-    membershipDate: z.date().refine(
+    joinDate: z.date().refine(
         (date) => date <= new Date(),
-        { message: 'Membership Date cannot be in the future' }
+        { message: 'Join date cannot be in the future' }
     ),
     phone: z.string().min(1, { message: "Phone cannot be empty" }),
     gender: z.string().min(1, { message: "Gender cannot be empty" }),
     maritalStatus: z.boolean(),
-    baptismStatus: z.string().min(1, { message: "Baptism Status cannot be empty" }),
-    membershipStatus: z.string().min(1, { message: "Membership Status cannot be empty" }),
+    ministry: z.string().min(1, { message: "Ministry cannot be empty" }),
     isActive: z.boolean(),
     address: z.string().min(1, { message: "Address cannot be empty" }),
 });
@@ -63,18 +60,52 @@ export const GroupSchema = z.object({
 });
 
 export const TitheSchema = z.object({
-    amount: z.string().min(1, { message: "Amount name cannot be empty" }),
+    memberId: z.string().min(1, { message: "Member is required" }),
+    amount: z.string().min(1, { message: "Amount cannot be empty" }),
     date: z.string().min(1, { message: "Date cannot be empty" }),
-    transactionId: z.string().min(0, { message: "Transaction Id status cannot be empty" }),
+    reference: z.string().min(0),
     paymentMethod: z.string().min(1, { message: "Payment method cannot be empty" }),
 });
 
 export const OfferingSchema = z.object({
-    amount: z.string().min(1, { message: "Amount name cannot be empty" }),
+    memberId: z.string().min(1, { message: "Member is required" }),
+    amount: z.string().min(1, { message: "Amount cannot be empty" }),
     date: z.string().min(1, { message: "Date cannot be empty" }),
-    transactionId: z.string().min(0, { message: "Transaction Id status cannot be empty" }),
+    reference: z.string().min(0),
     paymentMethod: z.string().min(1, { message: "Payment method cannot be empty" }),
-    fundName: z.string().min(1, { message: "Fund name method cannot be empty" }),
-    reason: z.string().min(0, { message: "Reason method cannot be empty" }),
-    isAnonymous: z.boolean()
+});
+
+export const ContributionSchema = z.object({
+    memberId: z.string().min(1, { message: "Member ID cannot be empty" }),
+    contributionType: z.string().min(1, { message: "Contribution type cannot be empty" }),
+    amount: z.string().min(1, { message: "Amount cannot be empty" }),
+    paymentMethod: z.string().min(1, { message: "Payment method cannot be empty" }),
+    reference: z.string().min(0),
+    date: z.string().min(1, { message: "Date cannot be empty" }),
+});
+
+export const ExpenseSchema = z.object({
+    title: z.string().min(1, { message: "Title cannot be empty" }),
+    description: z.string().min(0),
+    amount: z.string().min(1, { message: "Amount cannot be empty" }),
+    category: z.string().min(1, { message: "Category cannot be empty" }),
+    department: z.string().min(1, { message: "Department cannot be empty" }),
+    expenseDate: z.string().min(1, { message: "Expense date cannot be empty" }),
+});
+
+export const DepartmentSchema = z.object({
+    name: z.string().min(1, { message: "Department name cannot be empty" }),
+    description: z.string().min(0),
+});
+
+export const AssignLeaderSchema = z.object({
+    leaderId: z.string().min(1, { message: "Leader ID cannot be empty" }),
+});
+
+export const FacilitatorSchema = z.object({
+    name: z.string().min(1, { message: "Name cannot be empty" }),
+    role: z.string().min(1, { message: "Role cannot be empty" }),
+    ministryType: z.string().min(1, { message: "Ministry type cannot be empty" }),
+    phone: z.string().min(1, { message: "Phone cannot be empty" }),
+    email: z.string().min(1, { message: "Email cannot be empty" }),
 });

@@ -4,42 +4,40 @@ import AutoResponsive from "@/components/auto_responsive";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import OfferingForm from "./components/offering_form";
-import { offeringColumns } from "../data/offering_columns";
-import { useGetContributionsByType } from "@/hooks/use-contribution-service";
+import { departmentColumns } from "../data/department_columns";
+import DepartmentForm from "./components/department_form";
+import { useGetDepartments } from "@/hooks/use-department-service";
 import { useQueryClient } from "@tanstack/react-query";
-import ContributionStats from "../components/contribution-stats";
 
-export default function Offering() {
+export default function Department() {
     const [open, setOpen] = useState<boolean>(false);
     const queryClient = useQueryClient();
 
-    const { data, isLoading } = useGetContributionsByType("OFFERINGS", { page: 1, limit: 50 });
+    const { data, isLoading } = useGetDepartments({ page: 1, limit: 50 });
 
     const handleSuccess = () => {
-        queryClient.invalidateQueries({ queryKey: ["contributions"] });
+        queryClient.invalidateQueries({ queryKey: ["departments"] });
     };
 
     return (
-        <main className="size-full overflow-y-auto overflow-x-hidden px-1">
+        <main className="size-full overflow-hidden px-1">
             <header className="w-full h-fit p-2">
                 <div className="flex justify-end space-x-2">
-                    <Button size={"sm"} onClick={() => setOpen(true)}><Plus /> Add Offering</Button>
+                    <Button size={"sm"} onClick={() => setOpen(true)}><Plus /> Add Department</Button>
                 </div>
             </header>
-            <ContributionStats contributionType="OFFERINGS" />
             <AutoResponsive>
                 <Card className="gap-0 py-0 px-2 rounded-md h-full">
                     <DataTable
-                        columns={offeringColumns}
+                        columns={departmentColumns}
                         dataSource={data?.data ?? []}
-                        columnToFilter="memberId"
+                        columnToFilter="name"
                         pinnedLeftColumns={['select']}
                         isLoading={isLoading}
                     />
                 </Card>
             </AutoResponsive>
-            <OfferingForm open={open} setOpen={setOpen} onSuccess={handleSuccess} />
+            <DepartmentForm open={open} setOpen={setOpen} onSuccess={handleSuccess} />
         </main>
     );
 }
