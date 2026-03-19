@@ -97,77 +97,65 @@ const OfferingForm = ({ open, setOpen, onSuccess }: OfferingFormType) => {
                 <FormProvider {...form}>
                     <aside className="w-full grid md:grid-cols-1 gap-3 px-4 py-1">
 
-                        <div className="w-full flex items-center">
-                            <aside className="w-full flex-1">
-                                <FormField
-                                    control={form.control}
-                                    name="memberId"
-                                    render={({ field }) => (
-                                        <FormSelectField
-                                            label="Member:"
-                                            field={field}
-                                            valueExpr="value"
-                                            keyExpr="label"
-                                            placeholder="Select a member"
-                                            options={memberOptions}
-                                        />
-                                    )}
+                        <FormField
+                            control={form.control}
+                            name="memberId"
+                            render={({ field }) => (
+                                <FormSelectField
+                                    label="Member:"
+                                    field={field}
+                                    valueExpr="value"
+                                    keyExpr="label"
+                                    placeholder="Select a member"
+                                    options={memberOptions}
+                                    wrapperClassName="gap-2"
                                 />
-                            </aside>
-                        </div>
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[71px]">
-                            <FormField
-                                control={form.control}
-                                name="date"
-                                render={({ field }) => (
-                                    <FormDatePicker label="Date:" field={field} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="date"
+                            render={({ field }) => (
+                                <FormDatePicker label="Date:" field={field} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[53px]">
-                            <FormField
-                                control={form.control}
-                                name="amount"
-                                render={({ field }) => (
-                                    <FormInputField label="Amount:" field={field} placeholder="Enter amount" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="amount"
+                            render={({ field }) => (
+                                <FormInputField label="Amount:" field={field} placeholder="Enter amount" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full flex items-center">
-                            <aside className="w-full flex-1">
-                                <FormField
-                                    control={form.control}
-                                    name="paymentMethod"
-                                    render={({ field }) => (
-                                        <FormSelectField
-                                            label="Payment Method:"
-                                            field={field}
-                                            valueExpr="value"
-                                            keyExpr="label"
-                                            options={[
-                                                { label: "Cash", value: "CASH" },
-                                                { label: "Check", value: "CHECK" },
-                                                { label: "ACH/Bank Transfer", value: "BANK_TRANSFER" },
-                                                { label: "Momo", value: "MOMO" },
-                                            ]}
-                                        />
-                                    )}
+                        <FormField
+                            control={form.control}
+                            name="paymentMethod"
+                            render={({ field }) => (
+                                <FormSelectField
+                                    label="Payment Method:"
+                                    field={field}
+                                    valueExpr="value"
+                                    keyExpr="label"
+                                    options={[
+                                        { label: "Cash", value: "CASH" },
+                                        { label: "Check", value: "CHECK" },
+                                        { label: "ACH/Bank Transfer", value: "BANK_TRANSFER" },
+                                        { label: "Momo", value: "MOMO" },
+                                    ]}
+                                    wrapperClassName="gap-2"
                                 />
-                            </aside>
-                        </div>
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[15px]">
-                            <FormField
-                                control={form.control}
-                                name="reference"
-                                render={({ field }) => (
-                                    <FormInputField label="Reference:" field={field} placeholder="Enter reference (optional)" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="reference"
+                            render={({ field }) => (
+                                <FormInputField label="Reference:" field={field} placeholder="Enter reference (optional)" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
                     </aside>
                 </FormProvider>

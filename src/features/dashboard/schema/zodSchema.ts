@@ -3,7 +3,7 @@ import z from "zod";
 export const MemberSchema = z.object({
     firstName: z.string().min(1, { message: "First name cannot be empty" }),
     lastName: z.string().min(1, { message: "Last name cannot be empty" }),
-    email: z.string().min(1, { message: "Email cannot be empty" }),
+    gender: z.string().min(1, { message: "Gender cannot be empty" }),
     dob: z.date().refine(
         (date) => date <= new Date(),
         { message: 'Date cannot be in the future' }
@@ -13,11 +13,8 @@ export const MemberSchema = z.object({
         { message: 'Join date cannot be in the future' }
     ),
     phone: z.string().min(1, { message: "Phone cannot be empty" }),
-    gender: z.string().min(1, { message: "Gender cannot be empty" }),
-    maritalStatus: z.boolean(),
+    email: z.string().min(1, { message: "Email cannot be empty" }),
     ministry: z.string().min(1, { message: "Ministry cannot be empty" }),
-    isActive: z.boolean(),
-    address: z.string().min(1, { message: "Address cannot be empty" }),
 });
 
 export const VisitorNewConvertSchema = z.object({

@@ -2,23 +2,17 @@
 
 import * as React from "react"
 import {
-  AlarmClockMinus,
-  Bot,
   Building2,
   Church,
   Gem,
   GraduationCap,
-  Group,
-  House,
   LayoutDashboard,
-  MonitorCheck,
   PieChart,
   ReceiptCent,
   Settings,
   Shield,
   SquareTerminal,
   Users,
-  Users2,
   Wallet,
 } from "lucide-react"
 
@@ -39,15 +33,15 @@ import { useFavStore } from "@/store/favourite-store"
 // This is sample data.
 const data = {
   user: {
-    name: "ChMS",
-    email: "info@chms.com",
+    name: "Impact Field Chapel",
+    email: "info@impact.field.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "ChMS Inc",
+      name: "Impact Field",
       logo: Church,
-      plan: "Enterprise",
+      plan: "Chapel",
     },
   ],
   favoutites: [
@@ -63,11 +57,11 @@ const data = {
       url: "#",
       icon: Wallet,
       items: [
-        {
-          title: "Tithes Records",
-          url: "/dashboard/contribution-management/tithes",
-          icon: MonitorCheck,
-        },
+        // {
+        //   title: "Tithes Records",
+        //   url: "/dashboard/contribution-management/tithes",
+        //   icon: MonitorCheck,
+        // },
         {
           title: "Offering Records",
           url: "/dashboard/contribution-management/offerings",
@@ -86,35 +80,35 @@ const data = {
           url: "/dashboard/member-management/member",
           icon: Users,
         },
-        {
-          title: "Visitor",
-          url: "/dashboard/member-management/visitor",
-          icon: AlarmClockMinus,
-        },
-        {
-          title: "Evangelism - New Convert",
-          url: "/dashboard/member-management/new-convert",
-          icon: House,
-        },
+        // {
+        //   title: "Visitor",
+        //   url: "/dashboard/member-management/visitor",
+        //   icon: AlarmClockMinus,
+        // },
+        // {
+        //   title: "Evangelism - New Convert",
+        //   url: "/dashboard/member-management/new-convert",
+        //   icon: House,
+        // },
       ],
     },
-    {
-      title: "Families & Groups",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Group",
-          url: "/dashboard/group-management/group",
-          icon: Group,
-        },
-        {
-          title: "Family",
-          url: "/dashboard/group-management/family",
-          icon: Users2,
-        },
-      ],
-    },
+    // {
+    //   title: "Families & Groups",
+    //   url: "#",
+    //   icon: Bot,
+    //   items: [
+    //     {
+    //       title: "Group",
+    //       url: "/dashboard/group-management/group",
+    //       icon: Group,
+    //     },
+    //     {
+    //       title: "Family",
+    //       url: "/dashboard/group-management/family",
+    //       icon: Users2,
+    //     },
+    //   ],
+    // },
     {
       title: "Department Mgmt",
       url: "#",

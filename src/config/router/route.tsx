@@ -2,14 +2,9 @@ import { ProtectedRoute } from "@/features/auth/middleware";
 import Signin from "@/features/auth/sigin";
 import Expenses from "@/features/dashboard/accounting_finance/expenses/expenses";
 import Offering from "@/features/dashboard/contribution_mgmt/offering/offering";
-import Tithe from "@/features/dashboard/contribution_mgmt/tithe/tithe";
 import Department from "@/features/dashboard/department_mgmt/department/department";
-import Family from "@/features/dashboard/family_group_mgmt/family/family";
-import Group from "@/features/dashboard/family_group_mgmt/group/group";
 import Facilitator from "@/features/dashboard/facilitator_mgmt/facilitator/facilitator";
 import Member from "@/features/dashboard/member_mgmt/member/member";
-import NewConvert from "@/features/dashboard/member_mgmt/new_convert/new-convert";
-import Visitor from "@/features/dashboard/member_mgmt/visitor/visitor";
 import Overview from "@/features/dashboard/overview/overview";
 import UserAccount from "@/features/dashboard/user_account/user-account";
 
@@ -60,9 +55,9 @@ export const routes: RouteType[] | any[] = [
             {
                 path: "accounting-finance",
                 children: [
-                    { path: "income", element: <div className="size-full bg-blue-50">Income</div> },
+                    // { path: "income", element: <div className="size-full bg-blue-50">Income</div> },
                     { path: "expenses", element: <Expenses /> },
-                    { path: "balance-sheet", element: <div className="size-full bg-blue-50">Balance sheet</div> },
+                    // { path: "balance-sheet", element: <div className="size-full bg-blue-50">Balance sheet</div> },
                 ]
             },
             // Department management route

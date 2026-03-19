@@ -80,76 +80,63 @@ const ExpenseForm = ({ open, setOpen, onSuccess }: ExpenseFormType) => {
                 <FormProvider {...form}>
                     <aside className="w-full grid md:grid-cols-1 gap-3 px-4 py-1">
 
-                        <div className="w-full md:pl-[53px]">
-                            <FormField
-                                control={form.control}
-                                name="title"
-                                render={({ field }) => (
-                                    <FormInputField label="Title:" field={field} placeholder="Enter expense title" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="title"
+                            render={({ field }) => (
+                                <FormInputField label="Title:" field={field} placeholder="Enter expense title" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full flex items-center">
-                            <aside className="w-full flex-1">
-                                <FormField
-                                    control={form.control}
-                                    name="category"
-                                    render={({ field }) => (
-                                        <FormSelectField label="Category:" field={field}
-                                            valueExpr="value" keyExpr="label"
-                                            options={[
-                                                { "label": "Equipment", "value": "Equipment" },
-                                                { "label": "Utilities", "value": "Utilities" },
-                                                { "label": "Salaries", "value": "Salaries" },
-                                                { "label": "Events", "value": "Events" },
-                                                { "label": "Other", "value": "Other" },
-                                            ]}
-                                        />
-                                    )}
+                        <FormField
+                            control={form.control}
+                            name="category"
+                            render={({ field }) => (
+                                <FormSelectField label="Category:" field={field}
+                                    valueExpr="value" keyExpr="label"
+                                    wrapperClassName="gap-2"
+                                    options={[
+                                        { label: "Equipment", value: "Equipment" },
+                                        { label: "Utilities", value: "Utilities" },
+                                        { label: "Salaries", value: "Salaries" },
+                                        { label: "Events", value: "Events" },
+                                        { label: "Other", value: "Other" },
+                                    ]}
                                 />
-                            </aside>
-                        </div>
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[7px]">
-                            <FormField
-                                control={form.control}
-                                name="department"
-                                render={({ field }) => (
-                                    <FormInputField label="Department:" field={field} placeholder="Enter department name" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="department"
+                            render={({ field }) => (
+                                <FormInputField label="Department:" field={field} placeholder="Enter department name" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[53px]">
-                            <FormField
-                                control={form.control}
-                                name="amount"
-                                render={({ field }) => (
-                                    <FormInputField label="Amount:" field={field} placeholder="Enter amount" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="amount"
+                            render={({ field }) => (
+                                <FormInputField label="Amount:" field={field} placeholder="Enter amount" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[27px]">
-                            <FormField
-                                control={form.control}
-                                name="expenseDate"
-                                render={({ field }) => (
-                                    <FormDatePicker label="Expense Date:" field={field} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="expenseDate"
+                            render={({ field }) => (
+                                <FormDatePicker label="Expense Date:" field={field} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full">
-                            <FormField
-                                control={form.control}
-                                name="description"
-                                render={({ field }) => (
-                                    <FormTextareaField label="Description:" field={field} placeholder="Enter description (optional)" inputClassName="h-24" />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="description"
+                            render={({ field }) => (
+                                <FormTextareaField label="Description:" field={field} placeholder="Enter description (optional)" inputClassName="h-24" wrapperClassName="gap-2" />
+                            )}
+                        />
 
                     </aside>
                 </FormProvider>

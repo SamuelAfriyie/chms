@@ -8,12 +8,13 @@ interface Props {
     placeholder?: string,
     label?: string;
     inputClassName?: string;
+    wrapperClassName?: string;
     showErrorMessage?: boolean
 }
 
-export default function FormTextareaField({ label, inputClassName, placeholder, field, showErrorMessage = false }: Props) {
+export default function FormTextareaField({ label, inputClassName, wrapperClassName, placeholder, field, showErrorMessage = false }: Props) {
     return (
-        <FormItem className="md:flex items-start space-x-0.5">
+        <FormItem className={cn("md:flex items-start space-x-0.5", wrapperClassName)}>
             <FormLabel className="text-xs text-nowrap">{label}</FormLabel>
             <div className="w-full">
                 <FormControl>

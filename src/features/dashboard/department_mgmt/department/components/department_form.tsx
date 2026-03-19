@@ -64,25 +64,21 @@ const DepartmentForm = ({ open, setOpen, onSuccess }: DepartmentFormType) => {
                 <FormProvider {...form}>
                     <aside className="w-full grid md:grid-cols-1 gap-3 px-4 py-1">
 
-                        <div className="w-full md:pl-[53px]">
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                    <FormInputField label="Name:" field={field} placeholder="Enter department name" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormInputField label="Name:" field={field} placeholder="Enter department name" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full">
-                            <FormField
-                                control={form.control}
-                                name="description"
-                                render={({ field }) => (
-                                    <FormTextareaField label="Description:" field={field} placeholder="Enter department description (optional)" inputClassName="h-24" />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="description"
+                            render={({ field }) => (
+                                <FormTextareaField label="Description:" field={field} placeholder="Enter department description (optional)" inputClassName="h-24" wrapperClassName="gap-2" />
+                            )}
+                        />
 
                     </aside>
                 </FormProvider>

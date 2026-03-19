@@ -67,76 +67,64 @@ const FacilitatorForm = ({ open, setOpen, onSuccess }: FacilitatorFormType) => {
                 <FormProvider {...form}>
                     <aside className="w-full grid md:grid-cols-1 gap-3 px-4 py-1">
 
-                        <div className="w-full md:pl-[53px]">
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                    <FormInputField label="Name:" field={field} placeholder="Enter full name" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormInputField label="Name:" field={field} placeholder="Enter full name" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full flex items-center">
-                            <aside className="w-full flex-1">
-                                <FormField
-                                    control={form.control}
-                                    name="role"
-                                    render={({ field }) => (
-                                        <FormSelectField label="Role:" field={field}
-                                            valueExpr="value" keyExpr="label"
-                                            options={[
-                                                { "label": "Teacher", "value": "TEACHER" },
-                                                { "label": "Coordinator", "value": "COORDINATOR" },
-                                                { "label": "Leader", "value": "LEADER" },
-                                                { "label": "Support", "value": "SUPPORT" },
-                                            ]}
-                                        />
-                                    )}
+                        <FormField
+                            control={form.control}
+                            name="role"
+                            render={({ field }) => (
+                                <FormSelectField label="Role:" field={field}
+                                    valueExpr="value" keyExpr="label"
+                                    wrapperClassName="gap-2"
+                                    options={[
+                                        { label: "Teacher", value: "TEACHER" },
+                                        { label: "Coordinator", value: "COORDINATOR" },
+                                        { label: "Leader", value: "LEADER" },
+                                        { label: "Support", value: "SUPPORT" },
+                                    ]}
                                 />
-                            </aside>
-                        </div>
+                            )}
+                        />
 
-                        <div className="w-full flex items-center">
-                            <aside className="w-full flex-1">
-                                <FormField
-                                    control={form.control}
-                                    name="ministryType"
-                                    render={({ field }) => (
-                                        <FormSelectField label="Ministry:" field={field}
-                                            valueExpr="value" keyExpr="label"
-                                            options={[
-                                                { "label": "Children", "value": "CHILDREN" },
-                                                { "label": "Youth", "value": "YOUTH" },
-                                                { "label": "Adult", "value": "ADULT" },
-                                                { "label": "Worship", "value": "WORSHIP" },
-                                                { "label": "Outreach", "value": "OUTREACH" },
-                                            ]}
-                                        />
-                                    )}
+                        <FormField
+                            control={form.control}
+                            name="ministryType"
+                            render={({ field }) => (
+                                <FormSelectField label="Ministry:" field={field}
+                                    valueExpr="value" keyExpr="label"
+                                    wrapperClassName="gap-2"
+                                    options={[
+                                        { label: "Children", value: "CHILDREN" },
+                                        { label: "Youth", value: "YOUTH" },
+                                        { label: "Adult", value: "ADULT" },
+                                        { label: "Worship", value: "WORSHIP" },
+                                        { label: "Outreach", value: "OUTREACH" },
+                                    ]}
                                 />
-                            </aside>
-                        </div>
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[53px]">
-                            <FormField
-                                control={form.control}
-                                name="phone"
-                                render={({ field }) => (
-                                    <FormInputField label="Phone:" field={field} placeholder="Enter phone number" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                                <FormInputField label="Phone:" field={field} placeholder="Enter phone number" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
-                        <div className="w-full md:pl-[53px]">
-                            <FormField
-                                control={form.control}
-                                name="email"
-                                render={({ field }) => (
-                                    <FormInputField label="Email:" field={field} placeholder="Enter email address" showErrorMessage={false} />
-                                )}
-                            />
-                        </div>
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormInputField label="Email:" field={field} placeholder="Enter email address" showErrorMessage={false} wrapperClassName="gap-2" />
+                            )}
+                        />
 
                     </aside>
                 </FormProvider>
