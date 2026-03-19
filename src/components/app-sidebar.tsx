@@ -29,12 +29,13 @@ import {
 import { NavFavourite } from "./nav-favorites"
 import { NavProjects } from "./nav-projects"
 import { useFavStore } from "@/store/favourite-store"
+import { authStore } from "@/lib/store/useAuthStore"
 
 // This is sample data.
 const data = {
   user: {
-    name: "Impact Field Chapel",
-    email: "info@impact.field.com",
+    name: `${authStore.getState().user?.firstName ?? "Impact"} ${authStore.getState().user?.lastName ?? "Field"}`,
+    email: authStore.getState().user?.email ?? "imapactfieldchapel@admin.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [

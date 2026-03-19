@@ -13,6 +13,13 @@ export interface Facilitator {
     updatedAt: string;
 }
 
+export interface FacilitatorListResponse {
+    data: Facilitator[];
+    total: number;
+    page: number;
+    limit: number;
+}
+
 export const useCreateFacilitator = () => {
     return useMutation({
         mutationFn: (data: Record<string, any>) =>
@@ -20,10 +27,10 @@ export const useCreateFacilitator = () => {
     });
 };
 
-export const useGetFacilitators = () => {
+export const useGetFacilitators = (params: Record<string, any>) => {
     return useQuery({
         queryKey: ["facilitators"],
-        queryFn: () => configFn<Facilitator[]>(facilitatorService.getAll()),
+        queryFn: () => configFn<FacilitatorListResponse>(facilitatorService.getAll(params)),
     });
 };
 

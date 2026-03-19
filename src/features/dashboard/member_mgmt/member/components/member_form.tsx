@@ -164,9 +164,8 @@ export default function MemberForm({ open, setOpen, onSuccess }: MemberFormType)
                                             wrapperClassName="gap-2"
                                             options={[
                                                 { label: "Adult", value: "ADULT" },
-                                                { label: "Youth", value: "YOUTH" },
-                                                { label: "Children", value: "CHILDREN" },
-                                                { label: "Senior", value: "SENIOR" },
+                                                { label: "Teens", value: "TEENS" },
+                                                { label: "Children", value: "CHILDREN" }, 
                                             ]}
                                         />
                                     )}

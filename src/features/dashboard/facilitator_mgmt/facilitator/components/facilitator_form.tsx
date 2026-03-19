@@ -84,9 +84,7 @@ const FacilitatorForm = ({ open, setOpen, onSuccess }: FacilitatorFormType) => {
                                     wrapperClassName="gap-2"
                                     options={[
                                         { label: "Teacher", value: "TEACHER" },
-                                        { label: "Coordinator", value: "COORDINATOR" },
-                                        { label: "Leader", value: "LEADER" },
-                                        { label: "Support", value: "SUPPORT" },
+                                        { label: "Coordinator", value: "ASSISTANT" },
                                     ]}
                                 />
                             )}

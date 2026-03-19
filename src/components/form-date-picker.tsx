@@ -22,7 +22,7 @@ export default function FormDatePicker({ field, label, placeholder = "Pick a dat
             <Popover>
                 <PopoverTrigger asChild>
                     <FormControl className="w-full">
-                        <Button
+                        <Button disabled={disabled}
                             variant={"outline"}
                             className={cn(
                                 "w-full pl-3 text-left font-normal h-8 rounded-sm",
@@ -44,7 +44,8 @@ export default function FormDatePicker({ field, label, placeholder = "Pick a dat
                         selected={field.value}
                         onSelect={field.onChange}
                         disabled={(date) => disabled == undefined &&
-                            date > new Date() || date < new Date("1900-01-01")
+                            date < new Date("2000-01-01")
+                            // date > new Date() || date < new Date("1900-01-01")
                         }
                     />
                 </PopoverContent>

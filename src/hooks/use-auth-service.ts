@@ -30,7 +30,7 @@ export interface Role {
 
 export interface User {
     id: number;
-    fistName: string;
+    firstName: string;
     lastName: string;
     email: string;
     email_verified_at: string | null;

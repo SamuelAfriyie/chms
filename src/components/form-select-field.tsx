@@ -1,5 +1,5 @@
 import type { ControllerRenderProps } from "react-hook-form";
-import { FormControl, FormItem, FormLabel, FormMessage } from "./ui/form"; 
+import { FormControl, FormItem, FormLabel } from "./ui/form"; 
 import { cn } from "@/lib/utils";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
@@ -31,7 +31,7 @@ export default function FormSelectField({ field, label, keyExpr, valueExpr, opti
                     ))}
                 </SelectContent>
             </Select> 
-            <FormMessage />
+            {/* <FormMessage /> */}
         </FormItem>
     );
 }
