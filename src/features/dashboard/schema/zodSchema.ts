@@ -68,6 +68,7 @@ export const OfferingSchema = z.object({
     memberId: z.string().min(1, { message: "Member is required" }),
     amount: z.string().min(1, { message: "Amount cannot be empty" }),
     date: z.string().min(1, { message: "Date cannot be empty" }),
+    contributionType: z.string().min(1, { message: "Contribution type cannot be empty" }),
     reference: z.string().min(0),
     paymentMethod: z.string().min(1, { message: "Payment method cannot be empty" }),
 });

@@ -6,7 +6,7 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import OfferingForm from "./components/offering_form";
 import { offeringColumns } from "../data/offering_columns";
-import { useGetContributionsByType } from "@/hooks/use-contribution-service";
+import { useGetContributions } from "@/hooks/use-contribution-service";
 import { useQueryClient } from "@tanstack/react-query";
 import ContributionStats from "../components/contribution-stats";
 
@@ -14,7 +14,8 @@ export default function Offering() {
     const [open, setOpen] = useState<boolean>(false);
     const queryClient = useQueryClient();
 
-    const { data, isLoading } = useGetContributionsByType("OFFERINGS", { page: 1, limit: 50 });
+    // const { data, isLoading } = useGetContributionsByType("OFFERINGS", { page: 1, limit: 50 });
+    const { data, isLoading } = useGetContributions({ page: 1, limit: 50 });
 
     const handleSuccess = () => {
         queryClient.invalidateQueries({ queryKey: ["contributions"] });

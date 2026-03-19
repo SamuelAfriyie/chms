@@ -26,7 +26,7 @@ const init: z.infer<typeof ExpenseSchema> = {
     amount: "",
     category: "",
     department: "",
-    expenseDate: "",
+    expenseDate: new Date().toISOString(),
 }
 
 const ExpenseForm = ({ open, setOpen, onSuccess }: ExpenseFormType) => {
@@ -126,7 +126,7 @@ const ExpenseForm = ({ open, setOpen, onSuccess }: ExpenseFormType) => {
                             control={form.control}
                             name="expenseDate"
                             render={({ field }) => (
-                                <FormDatePicker label="Expense Date:" field={field} wrapperClassName="gap-2" />
+                                <FormDatePicker label="Expense Date:" disabled field={field} wrapperClassName="gap-2" />
                             )}
                         />
 

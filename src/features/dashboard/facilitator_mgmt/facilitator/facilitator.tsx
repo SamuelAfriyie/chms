@@ -13,8 +13,8 @@ export default function Facilitator() {
     const [open, setOpen] = useState<boolean>(false);
     const queryClient = useQueryClient();
 
-    const { data, isLoading } = useGetFacilitators();
-
+    const { data: res, isLoading } = useGetFacilitators({ page: 1, limit: 50 });
+    console.log(res?.data)
     const handleSuccess = () => {
         queryClient.invalidateQueries({ queryKey: ["facilitators"] });
     };
@@ -30,7 +30,7 @@ export default function Facilitator() {
                 <Card className="gap-0 py-0 px-2 rounded-md h-full">
                     <DataTable
                         columns={facilitatorColumns}
-                        dataSource={data ?? []}
+                        dataSource={res?.data ?? []}
                         columnToFilter="name"
                         pinnedLeftColumns={['select']}
                         isLoading={isLoading}

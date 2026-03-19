@@ -23,7 +23,8 @@ interface OfferingFormType {
 const init: z.infer<typeof OfferingSchema> = {
     memberId: "",
     amount: "",
-    date: "",
+    date: new Date().toString(),
+    contributionType: "",
     paymentMethod: "",
     reference: "",
 };
@@ -46,11 +47,11 @@ const OfferingForm = ({ open, setOpen, onSuccess }: OfferingFormType) => {
         mutate(
             {
                 memberId: values.memberId,
-                contributionType: "OFFERINGS",
+                contributionType: values.contributionType,
                 amount: Number(values.amount),
                 paymentMethod: values.paymentMethod,
                 reference: values.reference,
-                date: values.date,
+                date: new Date(values.date).toISOString(),
             },
             {
                 onSuccess: () => {
@@ -99,6 +100,14 @@ const OfferingForm = ({ open, setOpen, onSuccess }: OfferingFormType) => {
 
                         <FormField
                             control={form.control}
+                            name="date"
+                            render={({ field }) => (
+                                <FormDatePicker disabled label="Date:" field={field} wrapperClassName="gap-2" />
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
                             name="memberId"
                             render={({ field }) => (
                                 <FormSelectField
@@ -115,17 +124,30 @@ const OfferingForm = ({ open, setOpen, onSuccess }: OfferingFormType) => {
 
                         <FormField
                             control={form.control}
-                            name="date"
+                            name="amount"
                             render={({ field }) => (
-                                <FormDatePicker label="Date:" field={field} wrapperClassName="gap-2" />
+                                <FormInputField label="Amount:" field={field} placeholder="Enter amount" showErrorMessage={false} wrapperClassName="gap-2" />
                             )}
                         />
 
                         <FormField
                             control={form.control}
-                            name="amount"
+                            name="contributionType"
                             render={({ field }) => (
-                                <FormInputField label="Amount:" field={field} placeholder="Enter amount" showErrorMessage={false} wrapperClassName="gap-2" />
+                                <FormSelectField
+                                    label="Contribution Type:"
+                                    field={field}
+                                    valueExpr="value"
+                                    keyExpr="label"
+                                    options={[
+                                        { label: "Building Project", value: "BUILDING_PROJECT" },
+                                        { label: "Thanksgiving", value: "THANKSGIVING" },
+                                        { label: "Seed", value: "SEED" },
+                                        { label: "Offering", value: "OFFERING" },
+                                        { label: "Tithes", value: "TITHES" },
+                                    ]}
+                                    wrapperClassName="gap-2"
+                                />
                             )}
                         />
 
@@ -140,9 +162,8 @@ const OfferingForm = ({ open, setOpen, onSuccess }: OfferingFormType) => {
                                     keyExpr="label"
                                     options={[
                                         { label: "Cash", value: "CASH" },
-                                        { label: "Check", value: "CHECK" },
-                                        { label: "ACH/Bank Transfer", value: "BANK_TRANSFER" },
-                                        { label: "Momo", value: "MOMO" },
+                                        { label: "Check", value: "TRANSFER" },
+                                        { label: "POS", value: "POS" }
                                     ]}
                                     wrapperClassName="gap-2"
                                 />

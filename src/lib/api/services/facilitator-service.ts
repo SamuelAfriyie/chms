@@ -10,10 +10,11 @@ const facilitatorService = {
         } as ServiceDefinition;
     },
 
-    getAll: () => {
+    getAll: (params: any) => {
         return {
             url: "/facilitators",
             method: "GET",
+            params,
         } as ServiceDefinition;
     },
 
